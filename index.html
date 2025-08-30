@@ -59,7 +59,7 @@ body {
 }
 
 .cover-page::before {
-  content: "Port City International\nUniversity"; /* 2 lines */
+  content: "Port City International\nUniversity"; 
   position: absolute;
   font-family: 'LED Dot-Matrix', monospace;
   font-size: 40px;
@@ -118,7 +118,6 @@ h1 { text-decoration: underline; }
   position: relative;
 }
 
-/* Print settings */
 @media print {
   body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; margin: 0; padding: 0; background: none !important; }
   .form-container { display: none !important; }
@@ -140,14 +139,18 @@ h1 { text-decoration: underline; }
   <label>Submitted By (Student Name):</label><input type="text" id="studentName"><br>
   <label>Student ID:</label><input type="text" id="studentId"><br>
   <label>Department (Student):</label><input type="text" id="studentDept"><br>
-  <label>Date of Submission:</label><input type="date" id="submissionDate"><br>
+  <label>Date of Submission:</label><input type="date" id="submissionDate"><br><br>
+
+  <label>Optional Background Image:</label><input type="file" id="bgUpload" accept="image/*"><br>
+  <label>Optional Logo Image:</label><input type="file" id="logoUpload" accept="image/*"><br><br>
+
   <button onclick="generateCover()">Generate Cover Page</button>
-  <button onclick="downloadCover()">Download as JPG</button>
+  <button onclick="downloadCover()">Download as JPG (Optional Images)</button>
   <button onclick="window.print()">Save & Print</button>
 </div>
 
 <div class="cover-page" id="coverPage">
-  <img class="university-logo" src="https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/logo.png" alt="University Logo">
+  <img class="university-logo" id="uniLogo" src="https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/logo.png" alt="University Logo">
   <h2>Port City International University</h2>
   <h1>Assignment On</h1>
 
@@ -179,13 +182,30 @@ h1 { text-decoration: underline; }
 <script>
 function generateCover() {
   const fields = ['topic','courseTitle','courseCode','departmentName','semester','teacherName','teacherDept','studentName','studentId','studentDept','submissionDate'];
-  fields.forEach(f => document.getElementById('out' + f.charAt(0).toUpperCase() + f.slice(1)).innerText = document.getElementById(f).value);
+  fields.forEach(f => {
+    const el = document.getElementById('out' + f.charAt(0).toUpperCase() + f.slice(1));
+    if(el) el.innerText = document.getElementById(f).value;
+  });
+  // Optional Background
+  const bgFile = document.getElementById('bgUpload').files[0];
+  if(bgFile) {
+    const reader = new FileReader();
+    reader.onload = e => { document.getElementById('coverPage').style.backgroundImage = `url(${e.target.result})`; };
+    reader.readAsDataURL(bgFile);
+  }
+  // Optional Logo
+  const logoFile = document.getElementById('logoUpload').files[0];
+  if(logoFile) {
+    const reader = new FileReader();
+    reader.onload = e => { document.getElementById('uniLogo').src = e.target.result; };
+    reader.readAsDataURL(logoFile);
+  }
   document.getElementById("coverPage").style.display = "block";
 }
 
 function downloadCover() {
   const cover = document.getElementById("coverPage");
-  cover.style.display = "block"; // Ensure visible before capture
+  cover.style.display = "block"; // Ensure visible
   html2canvas(cover, {scale: 2}).then(canvas => {
     const link = document.createElement('a');
     link.download = 'Assignment_Cover.jpg';
