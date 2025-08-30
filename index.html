@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assignment Cover Page</title>
+<style>
+/* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+  margin: 0;
+  padding: 20px;
+}
+
+/* Form Container Styles */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Input Fields Styles */
+.form-container input {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Button Styles */
+.form-container button {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px 5px 0 0;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-container button:hover {
+  background: linear-gradient(to right, #00f2fe, #4facfe);
+}
+
+/* Cover Page Styles */
+.cover-page {
+  display: none;
+  background: #fff;
+  padding: 50px;
+  border-radius: 12px;
+  max-width: 850px;
+  margin: auto;
+  min-height: 1122px;
+  width: 794px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Watermark Styles */
+.cover-page::before {
+  content: attr(data-watermark);
+  position: absolute;
+  font-size: 100px;
+  color: rgba(0,0,0,0.05);
+  top: 40%;
+  left: 5%;
+  transform: rotate(-30deg);
+  width: 100%;
+  text-align: center;
+  z-index: 0;
+  font-family: 'LED Dot-Matrix', monospace;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* University Logo Styles */
+.university-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+/* Heading Styles */
+h1, h2 {
+  margin: 10px 0;
+}
+
+h1 {
+  text-decoration: underline;
+}
+
+/* Box Styles */
+.box {
+  border: 1px solid #000;
+  padding: 14px;
+  margin: 14px 0;
+  font-size: 16px;
+  display: block;
+  text-align: left;
+}
+
+/* Flex Row Styles */
+.flex-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.flex-row .box {
+  flex: 1;
+}
+
+/* Footer Styles */
+.footer {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0;
+    padding: 0;
+  }
+  .form-container { display: none !important; }
+  .cover-page {
+    display: block !important;
+    box-shadow: none;
+    width: auto;
+    min-height: auto;
+    page-break-before: always;
+  }
+}
+</style>
+<link href="https://fonts.cdnfonts.com/css/led-dot-matrix" rel="stylesheet">
+</head>
+<body>
+
+<!-- Form Container -->
+<div class="form-container">
+  <h2>Enter Assignment Details</h2>
+  <label>University Name:</label>
+  <input type="text" id="university" value="Port City International University"><br>
+  <label>Assignment Topic:</label>
+  <input type="text" id="topic"><br>
+  <label>Course Title:</label>
+  <input type="text" id="courseTitle"><br>
+  <label>Course Code:</label>
+  <input type="text" id="courseCode"><br>
+  <label>Faculty Name:</label>
+  <input type="text" id="facultyName"><br>
+  <label>Semester / Year:</label>
+  <input type="text" id="semester"><br>
+  <label>Submitted To (Name):</label>
+  <input type="text" id="teacherName"><br>
+  <label>Department (Teacher):</label>
+  <input type="text" id="teacherDept"><br>
+  <label>Submitted By (Student Name):</label>
+  <input type="text" id="studentName"><br>
+  <label>Student ID:</label>
+  <input type="text" id="studentId"><br>
+  <label>Department (Student):</label>
+  <input type="text" id="studentDept"><br>
+  <label>Date of Submission:</label>
+  <input type="date" id="submissionDate"><br>
+  <button onclick="generateCover()">Generate Cover Page</button>
+  <button onclick="window.print()">Print Cover Page</button>
+</div>
+
+<!-- Cover Page -->
+<div class="cover-page" id="coverPage" data-watermark="">
+  <img class="university-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Port_City_Logo.jpg" alt="Logo">
+  <h2 id="uniName"></h2>
+  <h1>Assignment On</h1>
+
+  <div class="box"><b>Topic:</b> <span id="outTopic"></span></div>
+  <div class="box"><b>Course Title:</b> <span id="outCourseTitle"></span></div>
+  <div class="box"><b>Course Code:</b> <span id="outCourseCode"></span></div>
+  <div class="box"><b>Faculty Name:</b> <span id="outFaculty"></span></div>
+  <div class="box"><b>Semester / Year:</b> <span id="outSemester"></span></div>
+
+  <div class="flex-row">
+    <div class="box"><b>Submitted To:</b><br>
+      Name: <span id="outTeacherName"></span><br>
+      Department: <span id="outTeacherDept"></span>
+    </div>
+    <div class="box"><b>Submitted By:</b><br>
+      Name: <span id="outStudentName"></span><br>
+      ID: <span id="outStudentId"></span><br>
+      Department: <span id="outStudentDept"></span>
+    </div>
+  </div>
+
+  <div class="box"><b>Date of Submission:</b> <span id="outDate"></span></div>
+
+  <div class="footer">
+    Made By Sayed Mohisin Chisty
+  </div>
+</div>
+
+<script>
+function generateCover() {
+  const uniName = document.getElementById("university").value;
+  document.getElementById("uniName").innerText = uniName;
+  document.getElementById("outTopic").innerText = document.getElementById("topic").value;
+  document.getElementById("outCourseTitle").innerText = document.getElementById("courseTitle").value;
+  document.getElementById("outCourseCode").innerText = document.getElementById("courseCode").value;
+  document.getElementById("outFaculty").innerText = document.getElementById("facultyName").value;
+  document.getElementById("outSemester").innerText = document.getElementById("semester").value;
+  document.getElementById("outTeacherName").innerText = document.getElementById("teacherName").value;
+  document.getElementById("outTeacherDept").innerText = document.getElementById("teacherDept").value;
+  document.getElementById("outStudentName").innerText = document.getElementById("studentName").value;
+  document.getElementById("outStudentId").innerText = document.getElementById("studentId").value;
+  document.getElementById("outStudentDept").innerText = document.getElementById("studentDept").value;
+  document.getElementById("outDate").innerText = document.getElementById("submissionDate").value;
+
+  document.getElementById("coverPage").setAttribute("data-watermark", uniName);
+  document.getElementById("coverPage").style.display = "block";
+}
+</script>
+
+</body>
+</html>
