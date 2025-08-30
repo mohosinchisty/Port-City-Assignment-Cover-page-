@@ -8,9 +8,9 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom right, #4facfe, #00f2fe);
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  background: #f0f0f0;
 }
 
 .form-container {
@@ -18,9 +18,8 @@ body {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  margin-bottom: 20px;
   max-width: 600px;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .form-container input {
@@ -46,83 +45,98 @@ body {
   background: linear-gradient(to right, #00f2fe, #4facfe);
 }
 
+/* Cover Page */
 .cover-page {
   display: none;
-  background: url('background.png') no-repeat center center;
-  background-size: cover;
-  padding: 50px;
-  border-radius: 12px;
-  max-width: 850px;
-  margin: auto;
-  min-height: 1122px;
   width: 794px;
-  box-sizing: border-box;
+  height: 1123px;
+  margin: auto;
   position: relative;
-  overflow: hidden;
+  background: url('https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/background.png') no-repeat center center;
+  background-size: cover;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-sizing: border-box;
 }
 
 .cover-page::before {
-  content: "Port City International University";
+  content: "Port City International\nUniversity"; /* 2 lines */
   position: absolute;
-  font-size: 50px; /* smaller watermark */
-  color: rgba(0,0,0,0.15);
+  font-family: 'LED Dot-Matrix', monospace;
+  font-size: 40px;
+  color: rgba(0,0,0,0.2);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-20deg);
+  white-space: pre;
+  text-align: center;
   z-index: 0;
-  font-family: 'LED Dot-Matrix', monospace;
-  font-style: italic;
-  font-weight: bold;
-  white-space: nowrap;
 }
 
 .university-logo {
   width: 120px;
   height: 120px;
+  margin-top: 30px;
   object-fit: contain;
-  margin-bottom: 20px;
   z-index: 1;
   position: relative;
 }
 
-h1, h2 { margin: 10px 0; z-index: 1; position: relative; }
+h1,h2 { margin: 10px 0; position: relative; z-index: 1; }
 h1 { text-decoration: underline; }
 
 .box {
   background: transparent;
   border: 1px solid #555;
   border-radius: 8px;
-  padding: 14px;
+  padding: 10px;
+  margin: 10px 20px;
+  text-align: left;
   font-size: 16px;
-  margin: 10px 0;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 
 .small-box { height: 60px; }
-.large-box { 
+.large-box {
   height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
 }
 .large-box b { display: inline-block; width: 100px; }
 
-.flex-row { display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap; }
+.flex-row { display: flex; gap: 20px; justify-content: space-between; margin-top: 15px; }
 .flex-row .large-box { flex: 1; }
 
 .footer {
   margin-top: 20px;
-  font-size: 12px; /* smaller footer font */
-  color: #555;
+  font-size: 12px;
   text-align: center;
-  font-style: normal;
   font-family: 'LED Dot-Matrix', monospace;
-  position: relative;
   z-index: 1;
+  position: relative;
+}
+
+/* Print settings */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0;
+    padding: 0;
+    background: none !important;
+  }
+  .form-container { display: none !important; }
+  .cover-page {
+    display: block !important;
+    box-shadow: none;
+    width: 794px;
+    height: 1123px;
+    margin: 0;
+    page-break-before: always;
+    background-size: cover !important;
+  }
 }
 </style>
 </head>
@@ -130,35 +144,24 @@ h1 { text-decoration: underline; }
 
 <div class="form-container">
   <h2>Enter Assignment Details</h2>
-  <label>Assignment Topic:</label>
-  <input type="text" id="topic"><br>
-  <label>Course Title:</label>
-  <input type="text" id="courseTitle"><br>
-  <label>Course Code:</label>
-  <input type="text" id="courseCode"><br>
-  <label>Department Name:</label>
-  <input type="text" id="departmentName"><br>
-  <label>Semester / Year:</label>
-  <input type="text" id="semester"><br>
-  <label>Submitted To (Name):</label>
-  <input type="text" id="teacherName"><br>
-  <label>Department (Teacher):</label>
-  <input type="text" id="teacherDept"><br>
-  <label>Submitted By (Student Name):</label>
-  <input type="text" id="studentName"><br>
-  <label>Student ID:</label>
-  <input type="text" id="studentId"><br>
-  <label>Department (Student):</label>
-  <input type="text" id="studentDept"><br>
-  <label>Date of Submission:</label>
-  <input type="date" id="submissionDate"><br>
+  <label>Assignment Topic:</label><input type="text" id="topic"><br>
+  <label>Course Title:</label><input type="text" id="courseTitle"><br>
+  <label>Course Code:</label><input type="text" id="courseCode"><br>
+  <label>Department Name:</label><input type="text" id="departmentName"><br>
+  <label>Semester / Year:</label><input type="text" id="semester"><br>
+  <label>Submitted To (Name):</label><input type="text" id="teacherName"><br>
+  <label>Department (Teacher):</label><input type="text" id="teacherDept"><br>
+  <label>Submitted By (Student Name):</label><input type="text" id="studentName"><br>
+  <label>Student ID:</label><input type="text" id="studentId"><br>
+  <label>Department (Student):</label><input type="text" id="studentDept"><br>
+  <label>Date of Submission:</label><input type="date" id="submissionDate"><br>
   <button onclick="generateCover()">Generate Cover Page</button>
   <button onclick="downloadCover()">Download as JPG</button>
   <button onclick="window.print()">Save & Print</button>
 </div>
 
 <div class="cover-page" id="coverPage">
-  <img class="university-logo" src="logo.png" alt="University Logo">
+  <img class="university-logo" src="https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/logo.png" alt="University Logo">
   <h2>Port City International University</h2>
   <h1>Assignment On</h1>
 
