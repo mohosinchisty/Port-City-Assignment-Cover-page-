@@ -195,6 +195,9 @@ h1 { text-decoration: underline; }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+const defaultBg = "https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/background.png";
+const defaultLogo = "https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/logo.png";
+
 function generateCover() {
   document.getElementById("outTopic").innerText = document.getElementById("topic").value;
   document.getElementById("outCourseTitle").innerText = document.getElementById("courseTitle").value;
@@ -208,28 +211,35 @@ function generateCover() {
   document.getElementById("outStudentDept").innerText = document.getElementById("studentDept").value;
   document.getElementById("outDate").innerText = document.getElementById("submissionDate").value;
 
-  // Background upload
+  const cover = document.getElementById("coverPage");
+  const logoImg = document.getElementById("coverLogo");
+
+  // Background upload or fallback
   const bgFile = document.getElementById("bgUpload").files[0];
-  if(bgFile){
+  if (bgFile) {
     const reader = new FileReader();
-    reader.onload = e => document.getElementById("coverPage").style.backgroundImage = `url(${e.target.result})`;
+    reader.onload = e => cover.style.backgroundImage = `url(${e.target.result})`;
     reader.readAsDataURL(bgFile);
+  } else {
+    cover.style.backgroundImage = `url(${defaultBg})`;
   }
 
-  // Logo upload
+  // Logo upload or fallback
   const logoFile = document.getElementById("logoUpload").files[0];
-  if(logoFile){
+  if (logoFile) {
     const reader = new FileReader();
-    reader.onload = e => document.getElementById("coverLogo").src = e.target.result;
+    reader.onload = e => logoImg.src = e.target.result;
     reader.readAsDataURL(logoFile);
+  } else {
+    logoImg.src = defaultLogo;
   }
 
-  document.getElementById("coverPage").style.display = "block";
+  cover.style.display = "block";
 }
 
 function downloadCoverPNG() {
   const cover = document.getElementById("coverPage");
-  html2canvas(cover, {scale: 2}).then(canvas => {
+  html2canvas(cover, {scale: 2, useCORS: true}).then(canvas => {
     const link = document.createElement('a');
     link.download = 'cover-page.png';
     link.href = canvas.toDataURL('image/png');
