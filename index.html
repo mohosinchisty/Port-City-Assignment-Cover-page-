@@ -120,23 +120,9 @@ h1 { text-decoration: underline; }
 
 /* Print settings */
 @media print {
-  body {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    margin: 0;
-    padding: 0;
-    background: none !important;
-  }
+  body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; margin: 0; padding: 0; background: none !important; }
   .form-container { display: none !important; }
-  .cover-page {
-    display: block !important;
-    box-shadow: none;
-    width: 794px;
-    height: 1123px;
-    margin: 0;
-    page-break-before: always;
-    background-size: cover !important;
-  }
+  .cover-page { display: block !important; box-shadow: none; width: 794px; height: 1123px; margin: 0; page-break-before: always; background-size: cover !important; }
 }
 </style>
 </head>
@@ -192,25 +178,17 @@ h1 { text-decoration: underline; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 function generateCover() {
-  document.getElementById("outTopic").innerText = document.getElementById("topic").value;
-  document.getElementById("outCourseTitle").innerText = document.getElementById("courseTitle").value;
-  document.getElementById("outCourseCode").innerText = document.getElementById("courseCode").value;
-  document.getElementById("outDepartment").innerText = document.getElementById("departmentName").value;
-  document.getElementById("outSemester").innerText = document.getElementById("semester").value;
-  document.getElementById("outTeacherName").innerText = document.getElementById("teacherName").value;
-  document.getElementById("outTeacherDept").innerText = document.getElementById("teacherDept").value;
-  document.getElementById("outStudentName").innerText = document.getElementById("studentName").value;
-  document.getElementById("outStudentId").innerText = document.getElementById("studentId").value;
-  document.getElementById("outStudentDept").innerText = document.getElementById("studentDept").value;
-  document.getElementById("outDate").innerText = document.getElementById("submissionDate").value;
+  const fields = ['topic','courseTitle','courseCode','departmentName','semester','teacherName','teacherDept','studentName','studentId','studentDept','submissionDate'];
+  fields.forEach(f => document.getElementById('out' + f.charAt(0).toUpperCase() + f.slice(1)).innerText = document.getElementById(f).value);
   document.getElementById("coverPage").style.display = "block";
 }
 
 function downloadCover() {
   const cover = document.getElementById("coverPage");
+  cover.style.display = "block"; // Ensure visible before capture
   html2canvas(cover, {scale: 2}).then(canvas => {
     const link = document.createElement('a');
-    link.download = 'cover-page.jpg';
+    link.download = 'Assignment_Cover.jpg';
     link.href = canvas.toDataURL('image/jpeg', 1.0);
     link.click();
   });
