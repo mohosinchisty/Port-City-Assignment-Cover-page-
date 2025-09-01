@@ -74,11 +74,48 @@ ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 </div>
 
 <script>
-const jobOptions = 
-  // Textile
-  {title:"Textile Engineer", summary:"Highly motivated and detail-oriented Textile Engineer with [X] years of experience in textile manufacturing, quality control, and process optimization. Proficient in modern textile technologies, fabric production techniques, and machinery operation. Skilled in analyzing and improving production processes to enhance efficiency, reduce waste, and ensure high-quality fabric output. Adept at collaborating with cross-functional teams, managing projects, and implementing innovative solutions in both woven and knitted textiles. Committed to continuous learning and applying sustainable practices in textile production.",techSkills: ["Textile Testing", "Fabric Analysis", "Dyeing & Finishing Processes", "Textile Manufacturing Techniques", "CAD for Textiles (NedGraphics, TexPro)", "Machinery Operation & Maintenance", "Process Optimization", "Sustainable & Eco-friendly Textiles"]
-softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "Project Management", "Team Coordination", "Communication Skills", "Time Management", "Adaptability", "Leadership"] , achievements:["Reduced production waste by 15%"], certifications:["Textile Diploma"], experience:[{title:"Textile Engineer",company:"ABC Textiles",start:"2022-01",end:"2023-08",current:false,responsibilities:["Supervised production line","Quality inspection"]}]},
-  {title:"Merchandiser", summary:"Results-driven and detail-oriented Merchandiser with [X] years of experience in sourcing, vendor management, and product planning. Skilled in coordinating with suppliers, analyzing market trends, and ensuring timely delivery of high-quality products. Adept at cost negotiation, inventory management, and maintaining strong client relationships to maximize sales and profitability. Strong organizational and analytical skills with a focus on achieving business goals efficiently.", techSkills: ["Vendor Management", "Product Sourcing", "Inventory Management", "Order Processing", "Cost Analysis & Negotiation", "Market Trend Analysis", "ERP & MS Office", "Supply Chain Coordination", softSkills: ["Communication Skills", "Negotiation", "Analytical Thinking", "Problem Solving", "Time Management", "Team Coordination", "Attention to Detail", "Adaptability", "Leadership"]achievements:["Increased client satisfaction rate"], certifications:["Merchandising Certificate"], experience:[{title:"Merchandiser",company:"XYZ Textiles",start:"2021-06",end:"2023-06",current:false,responsibilities:["Managed client orders","Liaised with suppliers"]}]},
+  const jobOptions = [
+  // Textile Engineer
+  {
+    title: "Textile Engineer",
+    summary: "Highly motivated and detail-oriented Textile Engineer with [X] years of experience in textile manufacturing, quality control, and process optimization. Proficient in modern textile technologies, fabric production techniques, and machinery operation. Skilled in analyzing and improving production processes to enhance efficiency, reduce waste, and ensure high-quality fabric output. Adept at collaborating with cross-functional teams, managing projects, and implementing innovative solutions in both woven and knitted textiles. Committed to continuous learning and applying sustainable practices in textile production.",
+    techSkills: ["Textile Testing", "Fabric Analysis", "Dyeing & Finishing Processes", "Textile Manufacturing Techniques", "CAD for Textiles (NedGraphics, TexPro)", "Machinery Operation & Maintenance", "Process Optimization", "Sustainable & Eco-friendly Textiles"],
+    softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "Project Management", "Team Coordination", "Communication Skills", "Time Management", "Adaptability", "Leadership"],
+    achievements: ["Reduced production waste by 15%"],
+    certifications: ["Textile Diploma"],
+    experience: [
+      {
+        title: "Textile Engineer",
+        company: "ABC Textiles",
+        start: "2022-01",
+        end: "2023-08",
+        current: false,
+        responsibilities: ["Supervised production line", "Quality inspection"]
+      }
+    ]
+  },
+
+  // Merchandiser
+  {
+    title: "Merchandiser",
+    summary: "Results-driven and detail-oriented Merchandiser with [X] years of experience in sourcing, vendor management, and product planning. Skilled in coordinating with suppliers, analyzing market trends, and ensuring timely delivery of high-quality products. Adept at cost negotiation, inventory management, and maintaining strong client relationships to maximize sales and profitability. Strong organizational and analytical skills with a focus on achieving business goals efficiently.",
+    techSkills: ["Vendor Management", "Product Sourcing", "Inventory Management", "Order Processing", "Cost Analysis & Negotiation", "Market Trend Analysis", "ERP & MS Office", "Supply Chain Coordination"],
+    softSkills: ["Communication Skills", "Negotiation", "Analytical Thinking", "Problem Solving", "Time Management", "Team Coordination", "Attention to Detail", "Adaptability", "Leadership"],
+    achievements: ["Increased client satisfaction rate"],
+    certifications: ["Merchandising Certificate"],
+    experience: [
+      {
+        title: "Merchandiser",
+        company: "XYZ Textiles",
+        start: "2021-06",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Managed client orders", "Liaised with suppliers"]
+      }
+    ]
+  },
+
+  // Wet Engineer
   {
     title: "Wet Engineer",
     summary: "Experienced Wet Engineer with expertise in textile wet processing, including dyeing, bleaching, and finishing. Skilled at managing chemical processes, optimizing production efficiency, and ensuring consistent fabric quality. Adept at troubleshooting production issues and implementing process improvements.",
@@ -98,7 +135,7 @@ softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "P
     ]
   },
 
-  // IT - Software Developer
+  // Software Developer
   {
     title: "Software Developer",
     summary: "Proficient Software Developer with hands-on experience in full-stack development, web application design, and debugging. Skilled in building scalable solutions, implementing modern frameworks, and collaborating in agile teams. Strong ability to deliver high-quality software on time.",
@@ -118,7 +155,7 @@ softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "P
     ]
   },
 
-  // IT - Data Analyst
+  // Data Analyst
   {
     title: "Data Analyst",
     summary: "Skilled Data Analyst experienced in collecting, cleaning, and analyzing complex datasets to derive actionable insights. Proficient in data visualization, reporting, and using analytical tools to support business decisions. Adept at identifying trends and improving data-driven strategies.",
@@ -158,7 +195,7 @@ softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "P
     ]
   },
 
-  // BBA - Business Analyst
+  // Business Analyst
   {
     title: "Business Analyst",
     summary: "Business Analyst with strong expertise in analyzing business operations, financial data, and market trends to provide actionable recommendations. Skilled in reporting, process improvement, and supporting strategic decisions to drive business growth.",
@@ -198,7 +235,7 @@ softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "P
     ]
   },
 
-  // English Teacher / Specialist
+  // English Teacher
   {
     title: "English Teacher",
     summary: "Professional English Teacher skilled in teaching grammar, literature, and communication skills to students of various levels. Experienced in curriculum development, lesson planning, and using interactive teaching methods to improve language proficiency.",
@@ -218,7 +255,7 @@ softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "P
     ]
   },
 
-  // Marketing Executive / Professional
+  // Marketing Executive
   {
     title: "Marketing Executive",
     summary: "Dynamic Marketing Executive experienced in developing and implementing marketing strategies, managing campaigns, and analyzing market trends. Skilled at social media management, brand promotion, and driving customer engagement to achieve business growth.",
@@ -254,7 +291,11 @@ softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "P
         end: "2023-06",
         current: false,
         responsibilities: ["Handled inbound and outbound calls", "Assisted customers with inquiries and complaints", "Maintained accurate records in CRM", "Collaborated with team to meet performance targets"]
-      }]}
+      }
+    ]
+  }
+];
+      
 // Populate title select
 const titleSelect = document.getElementById("titleSelect");
 jobOptions.forEach(job=>{
