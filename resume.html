@@ -7,7 +7,7 @@
 <style>
 body { font-family: Arial,sans-serif; margin:0; padding:0; background:#f0f2f5; }
 .container { max-width:900px; margin:auto; padding:20px; }
-h2,h3 { margin-top:15px; color:#333; }
+h2,h3 { margin-top:15px; color:#0073e6; }
 input, textarea, select, button { width:100%; margin:5px 0; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box; font-size:13px; }
 button { background:#0073e6; color:#fff; border:none; cursor:pointer; font-weight:bold; transition:0.3s; }
 button:hover { background:#005bb5; }
@@ -32,7 +32,10 @@ ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 <h2>ATS Friendly Resume Generator</h2>
 
 <input type="text" id="name" placeholder="Full Name">
-<input type="text" id="title" placeholder="Job Title / Educational Title">
+<select id="titleSelect">
+  <option value="">-- Select Job Title --</option>
+</select>
+<input type="text" id="title" placeholder="Job Title (editable)">
 <input type="text" id="email" placeholder="Email">
 <input type="text" id="phone" placeholder="Phone">
 <input type="text" id="linkedin" placeholder="LinkedIn">
@@ -57,20 +60,244 @@ ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 
 <h3>Experience</h3>
 <div id="experience"></div>
-<button onclick="addExperience()">+ Add Experience</button>
+<button onclick="addExperience(jobOptions)">+ Add Experience</button>
 
 <h3>Education</h3>
 <div id="education"></div>
 <button onclick="addEducation()">+ Add Education</button>
 
-<button onclick="aiHelp()">AI Help</button>
 <button onclick="updatePreview()">Generate Resume</button>
 <button onclick="window.print()">Print Resume</button>
 <button onclick="downloadDocx()">Download DOCX</button>
 
 <div id="resumePreview"></div>
+</div>
 
 <script>
+const jobOptions = [
+  // Textile
+  {title:"Textile Engineer", summary:"Highly motivated and detail-oriented Textile Engineer with [X] years of experience in textile manufacturing, quality control, and process optimization. Proficient in modern textile technologies, fabric production techniques, and machinery operation. Skilled in analyzing and improving production processes to enhance efficiency, reduce waste, and ensure high-quality fabric output. Adept at collaborating with cross-functional teams, managing projects, and implementing innovative solutions in both woven and knitted textiles. Committed to continuous learning and applying sustainable practices in textile production.",techSkills: ["Textile Testing", "Fabric Analysis", "Dyeing & Finishing Processes", "Textile Manufacturing Techniques", "CAD for Textiles (NedGraphics, TexPro)", "Machinery Operation & Maintenance", "Process Optimization", "Sustainable & Eco-friendly Textiles"]
+softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "Project Management", "Team Coordination", "Communication Skills", "Time Management", "Adaptability", "Leadership"] , achievements:["Reduced production waste by 15%"], certifications:["Textile Diploma"], experience:[{title:"Textile Engineer",company:"ABC Textiles",start:"2022-01",end:"2023-08",current:false,responsibilities:["Supervised production line","Quality inspection"]}]},
+  {title:"Merchandiser", summary:"Results-driven and detail-oriented Merchandiser with [X] years of experience in sourcing, vendor management, and product planning. Skilled in coordinating with suppliers, analyzing market trends, and ensuring timely delivery of high-quality products. Adept at cost negotiation, inventory management, and maintaining strong client relationships to maximize sales and profitability. Strong organizational and analytical skills with a focus on achieving business goals efficiently.", techSkills: ["Vendor Management", "Product Sourcing", "Inventory Management", "Order Processing", "Cost Analysis & Negotiation", "Market Trend Analysis", "ERP & MS Office", "Supply Chain Coordination", softSkills: ["Communication Skills", "Negotiation", "Analytical Thinking", "Problem Solving", "Time Management", "Team Coordination", "Attention to Detail", "Adaptability", "Leadership"]achievements:["Increased client satisfaction rate"], certifications:["Merchandising Certificate"], experience:[{title:"Merchandiser",company:"XYZ Textiles",start:"2021-06",end:"2023-06",current:false,responsibilities:["Managed client orders","Liaised with suppliers"]}]},
+  {
+    title: "Wet Engineer",
+    summary: "Experienced Wet Engineer with expertise in textile wet processing, including dyeing, bleaching, and finishing. Skilled at managing chemical processes, optimizing production efficiency, and ensuring consistent fabric quality. Adept at troubleshooting production issues and implementing process improvements.",
+    techSkills: ["Wet Processing Techniques", "Dyeing & Finishing", "Bleaching Processes", "Chemical Handling", "Process Optimization", "Quality Control in Textiles", "Fabric Testing"],
+    softSkills: ["Problem Solving", "Analytical Thinking", "Attention to Detail", "Team Coordination", "Time Management"],
+    achievements: ["Improved dyeing efficiency by 20%", "Reduced chemical wastage by 15%"],
+    certifications: ["Wet Processing Certificate"],
+    experience: [
+      {
+        title: "Wet Engineer",
+        company: "LMN Fabrics",
+        start: "2020-03",
+        end: "2023-03",
+        current: false,
+        responsibilities: ["Managed dyeing and finishing processes", "Handled chemicals safely and efficiently", "Optimized wet processing workflows", "Ensured quality compliance of fabrics"]
+      }
+    ]
+  },
+
+  // IT - Software Developer
+  {
+    title: "Software Developer",
+    summary: "Proficient Software Developer with hands-on experience in full-stack development, web application design, and debugging. Skilled in building scalable solutions, implementing modern frameworks, and collaborating in agile teams. Strong ability to deliver high-quality software on time.",
+    techSkills: ["JavaScript", "HTML", "CSS", "React", "Node.js", "REST APIs", "Version Control (Git)", "Database Management"],
+    softSkills: ["Problem Solving", "Teamwork", "Communication", "Adaptability", "Time Management"],
+    achievements: ["Delivered multiple web projects on schedule", "Improved application performance by 30%"],
+    certifications: ["CS Degree"],
+    experience: [
+      {
+        title: "Software Developer",
+        company: "Tech Solutions",
+        start: "2021-01",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Developed responsive web applications", "Reviewed and optimized code", "Collaborated with cross-functional teams", "Maintained application documentation"]
+      }
+    ]
+  },
+
+  // IT - Data Analyst
+  {
+    title: "Data Analyst",
+    summary: "Skilled Data Analyst experienced in collecting, cleaning, and analyzing complex datasets to derive actionable insights. Proficient in data visualization, reporting, and using analytical tools to support business decisions. Adept at identifying trends and improving data-driven strategies.",
+    techSkills: ["Python", "SQL", "Tableau", "Excel", "Data Cleaning", "Data Visualization", "Reporting Tools", "Statistical Analysis"],
+    softSkills: ["Analytical Thinking", "Detail Oriented", "Problem Solving", "Communication", "Time Management"],
+    achievements: ["Created dashboards providing key business insights", "Automated reporting, saving 10 hours/week"],
+    certifications: ["Data Analysis Certificate"],
+    experience: [
+      {
+        title: "Data Analyst",
+        company: "Data Corp",
+        start: "2022-02",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Cleaned and processed large datasets", "Generated reports and dashboards", "Analyzed trends and patterns", "Presented findings to management"]
+      }
+    ]
+  },
+
+  // Electrical Engineer
+  {
+    title: "Electrical Engineer",
+    summary: "Electrical Engineer with experience in designing, installing, and maintaining electrical systems for industrial and commercial applications. Skilled in circuit design, power distribution, and system troubleshooting. Adept at improving efficiency and ensuring safety compliance in electrical operations.",
+    techSkills: ["Circuit Design", "Power Systems", "Electrical Installations", "Maintenance & Troubleshooting", "Control Systems", "Load Analysis", "Safety Compliance", "SCADA Systems"],
+    softSkills: ["Problem Solving", "Team Leadership", "Analytical Thinking", "Attention to Detail", "Project Management"],
+    achievements: ["Reduced electrical failures by 25%", "Optimized power distribution systems"],
+    certifications: ["Electrical Engineering Degree"],
+    experience: [
+      {
+        title: "Electrical Engineer",
+        company: "Power Ltd",
+        start: "2019-01",
+        end: "2023-04",
+        current: false,
+        responsibilities: ["Designed electrical circuits and systems", "Maintained and repaired equipment", "Supervised installation projects", "Ensured safety and compliance"]
+      }
+    ]
+  },
+
+  // BBA - Business Analyst
+  {
+    title: "Business Analyst",
+    summary: "Business Analyst with strong expertise in analyzing business operations, financial data, and market trends to provide actionable recommendations. Skilled in reporting, process improvement, and supporting strategic decisions to drive business growth.",
+    techSkills: ["Excel", "PowerPoint", "Financial Analysis", "Data Modeling", "Business Reporting", "Process Improvement", "ERP Tools"],
+    softSkills: ["Communication", "Analytical Thinking", "Problem Solving", "Team Coordination", "Attention to Detail"],
+    achievements: ["Improved reporting efficiency by 30%", "Streamlined business processes reducing delays"],
+    certifications: ["BBA Degree"],
+    experience: [
+      {
+        title: "Business Analyst",
+        company: "Biz Solutions",
+        start: "2021-03",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Analyzed business performance metrics", "Prepared detailed reports", "Recommended process improvements", "Collaborated with stakeholders for decision making"]
+      }
+    ]
+  },
+
+  // HR Manager
+  {
+    title: "HR Manager",
+    summary: "Experienced HR Manager with expertise in recruitment, employee relations, performance management, and HR policy implementation. Skilled at fostering a positive work culture, resolving conflicts, and aligning HR strategies with organizational goals.",
+    techSkills: ["Recruitment & Talent Acquisition", "Employee Onboarding", "Performance Management Systems (PMS)", "HRIS", "Payroll Management", "HR Policy Development", "Training & Development"],
+    softSkills: ["Communication", "Conflict Resolution", "Leadership", "Problem Solving", "Team Coordination", "Empathy", "Time Management"],
+    achievements: ["Reduced employee turnover by 15%", "Implemented new performance appraisal system improving productivity"],
+    certifications: ["HR Management Certificate", "SHRM Certified Professional"],
+    experience: [
+      {
+        title: "HR Manager",
+        company: "Global Solutions Ltd",
+        start: "2019-06",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Managed full-cycle recruitment", "Developed HR policies and procedures", "Handled employee grievances and performance issues", "Organized training and development programs"]
+      }
+    ]
+  },
+
+  // English Teacher / Specialist
+  {
+    title: "English Teacher",
+    summary: "Professional English Teacher skilled in teaching grammar, literature, and communication skills to students of various levels. Experienced in curriculum development, lesson planning, and using interactive teaching methods to improve language proficiency.",
+    techSkills: ["Curriculum Development", "Lesson Planning", "Student Assessment", "Language Proficiency Evaluation", "Classroom Management", "ESL/EFL Teaching Methods", "Educational Technology Tools (Zoom, Google Classroom)"],
+    softSkills: ["Communication", "Patience", "Creativity", "Adaptability", "Motivation", "Problem Solving", "Teamwork"],
+    achievements: ["Improved student test scores by 20%", "Developed interactive English learning modules"],
+    certifications: ["TESOL Certificate", "CELTA Certification"],
+    experience: [
+      {
+        title: "English Teacher",
+        company: "Bright Future Academy",
+        start: "2020-01",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Planned and delivered lessons for students", "Assessed and tracked student progress", "Created interactive learning activities", "Integrated technology for virtual teaching"]
+      }
+    ]
+  },
+
+  // Marketing Executive / Professional
+  {
+    title: "Marketing Executive",
+    summary: "Dynamic Marketing Executive experienced in developing and implementing marketing strategies, managing campaigns, and analyzing market trends. Skilled at social media management, brand promotion, and driving customer engagement to achieve business growth.",
+    techSkills: ["Digital Marketing", "Social Media Management", "Content Creation", "Email Marketing", "SEO & SEM", "Market Research", "Brand Strategy", "Google Analytics"],
+    softSkills: ["Communication", "Creativity", "Analytical Thinking", "Teamwork", "Time Management", "Problem Solving", "Adaptability"],
+    achievements: ["Increased social media engagement by 30%", "Successfully launched campaigns that boosted sales by 15%"],
+    certifications: ["Digital Marketing Certificate"],
+    experience: [
+      {
+        title: "Marketing Executive",
+        company: "Bright Media Solutions",
+        start: "2021-01",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Planned and executed marketing campaigns", "Managed social media platforms", "Conducted market research and analysis", "Developed content for marketing initiatives"]
+      }
+    ]
+  },
+
+  // Call Center Executive
+  {
+    title: "Call Center Executive",
+    summary: "Motivated Call Center Executive skilled in customer service, handling inquiries, and resolving complaints efficiently. Experienced in maintaining high customer satisfaction and supporting team targets in fast-paced call center environments.",
+    techSkills: ["Customer Relationship Management (CRM)", "Call Handling", "Data Entry", "MS Office", "Telecommunication Systems", "Customer Support Tools"],
+    softSkills: ["Communication", "Patience", "Problem Solving", "Active Listening", "Teamwork", "Adaptability", "Time Management"],
+    achievements: ["Achieved 95% customer satisfaction rating", "Resolved customer complaints efficiently, reducing escalations"],
+    certifications: ["Customer Service Training Certificate"],
+    experience: [
+      {
+        title: "Call Center Executive",
+        company: "Global Call Services",
+        start: "2022-06",
+        end: "2023-06",
+        current: false,
+        responsibilities: ["Handled inbound and outbound calls", "Assisted customers with inquiries and complaints", "Maintained accurate records in CRM", "Collaborated with team to meet performance targets"]
+      }
+    ]
+  }
+]
+
+// Populate title select
+const titleSelect = document.getElementById("titleSelect");
+jobOptions.forEach(job=>{
+  const opt = document.createElement("option");
+  opt.value = job.title;
+  opt.textContent = job.title;
+  titleSelect.appendChild(opt);
+});
+
+// Autofill when selecting title
+titleSelect.addEventListener("change", function(){
+  const selected = jobOptions.find(j=>j.title===this.value);
+  if(selected){
+    document.getElementById("title").value = selected.title;
+    document.getElementById("summary").value = selected.summary;
+    fillSection("techSkills", selected.techSkills);
+    fillSection("softSkills", selected.softSkills);
+    fillSection("achievements", selected.achievements);
+    fillSection("certifications", selected.certifications);
+    document.getElementById("experience").innerHTML = "";
+    selected.experience.forEach(exp=>{
+      const div=document.createElement("div"); div.className="entry";
+      div.innerHTML = `<input type='text' placeholder='Job Title' value='${exp.title}'>
+                       <input type='text' placeholder='Company Name' value='${exp.company}'>
+                       <input type='month' placeholder='Start Date' value='${exp.start}'>
+                       <input type='month' placeholder='End Date' value='${exp.end}'>
+                       <label><input type='checkbox' class='currentJob' ${exp.current?"checked":""}> Currently Working</label>
+                       <textarea placeholder='Responsibilities'>${exp.responsibilities.join("\n")}</textarea>`;
+      const checkbox = div.querySelector(".currentJob");
+      const endDateInput = div.querySelector("input[type='month']:nth-child(4)");
+      checkbox.addEventListener("change", function(){
+        if(this.checked){ endDateInput.disabled=true; endDateInput.value=""; } else { endDateInput.disabled=false; }
+      });
+      if(checkbox.checked) endDateInput.disabled=true;
+      document.getElementById("experience").appendChild(div);
+    });
+  }
+});
+
 // Add skill dynamically
 function addSkill(sectionId){
   const div=document.createElement("input");
@@ -78,24 +305,37 @@ function addSkill(sectionId){
   document.getElementById(sectionId).appendChild(div);
 }
 
-// Add experience with "Currently Working" checkbox
-function addExperience(){
+// Add experience manually
+function addExperience(prefill){
   const div=document.createElement("div"); div.className="entry";
-  div.innerHTML=`<input type='text' placeholder='Job Title'>
-                 <input type='text' placeholder='Company Name'>
-                 <input type='month' placeholder='Start Date'>
-                 <input type='month' placeholder='End Date'>
-                 <label><input type='checkbox' class='currentJob' style='margin-right:5px;'> Currently Working</label>
-                 <textarea placeholder='Responsibilities (one per line)'></textarea>`;
-  const checkbox = div.querySelector(".currentJob");
+  let optionsHtml = prefill ? prefill.map(job => `<option value="${job.title}">${job.title}</option>`).join('') : '';
+  div.innerHTML = `<select class="jobTitle"><option value="">Select Job Title</option>${optionsHtml}</select>
+                   <input type='text' placeholder='Company Name'>
+                   <input type='month' placeholder='Start Date'>
+                   <input type='month' placeholder='End Date'>
+                   <label><input type='checkbox' class='currentJob'> Currently Working</label>
+                   <textarea placeholder='Responsibilities (one per line)'></textarea>`;
+  const select = div.querySelector(".jobTitle");
   const endDateInput = div.querySelector("input[type='month']:nth-child(4)");
+  const checkbox = div.querySelector(".currentJob");
+  select.addEventListener("change", function(){
+    const selected = jobOptions.find(j=>j.title===this.value);
+    if(selected){
+      div.querySelector("input[placeholder='Company Name']").value = selected.experience[0].company || "";
+      div.querySelector("input[type='month']:nth-child(3)").value = selected.experience[0].start || "";
+      div.querySelector("input[type='month']:nth-child(4)").value = selected.experience[0].end || "";
+      div.querySelector("textarea").value = (selected.experience[0].responsibilities||[]).join("\n");
+      checkbox.checked = selected.experience[0].current || false;
+      endDateInput.disabled = checkbox.checked;
+    }
+  });
   checkbox.addEventListener("change", function(){
     if(this.checked){ endDateInput.disabled=true; endDateInput.value=""; } else { endDateInput.disabled=false; }
   });
   document.getElementById("experience").appendChild(div);
 }
 
-// Add education
+// Add Education
 function addEducation(){
   const div=document.createElement("div"); div.className="entry";
   div.innerHTML=`<input type='text' placeholder='Degree'>
@@ -106,72 +346,10 @@ function addEducation(){
   document.getElementById("education").appendChild(div);
 }
 
-// Fill sections
+// Fill sections from array
 function fillSection(sectionId, arr){
   const container=document.getElementById(sectionId); container.innerHTML="";
   if(arr && arr.length){ arr.forEach(v=>{ const input=document.createElement("input"); input.type="text"; input.value=v; container.appendChild(input); }); }
-}
-
-// AI Help
-async function aiHelp(){
-  const titleInput = document.getElementById("title").value.trim().toLowerCase();
-  if(!titleInput) return alert("Enter Job Title / Educational Title");
-  const baseURL = "https://raw.githubusercontent.com/YourUsername/YourRepo/main/resume-data/";
-  const fileName = titleInput.replace(/\s+/g,"_") + ".json";
-  try{
-    const response = await fetch(baseURL + fileName);
-    if(!response.ok) return alert("No data found for this title on GitHub");
-    const data = await response.json();
-
-    document.getElementById("name").value = data.name || "";
-    document.getElementById("summary").value = data.summary || "";
-    fillSection("techSkills", data.techSkills);
-    fillSection("softSkills", data.softSkills);
-    fillSection("achievements", data.achievements);
-    fillSection("certifications", data.certifications);
-    fillExperience(data.experience); fillEducation(data.education);
-    updatePreview();
-  }catch(err){ console.error(err); alert("Error fetching JSON from GitHub"); }
-}
-
-// Fill experience from JSON
-function fillExperience(arr){
-  const container=document.getElementById("experience"); container.innerHTML="";
-  if(!arr) return;
-  arr.forEach(e=>{
-    const div=document.createElement("div"); div.className="entry";
-    div.innerHTML=`<input type='text' placeholder='Job Title' value='${e.title||""}'>
-                   <input type='text' placeholder='Company Name' value='${e.company||""}'>
-                   <input type='month' placeholder='Start Date' value='${e.start||""}'>
-                   <input type='month' placeholder='End Date' value='${e.end||""}'>
-                   <label><input type='checkbox' class='currentJob' ${e.current?"checked":""} style='margin-right:5px;'> Currently Working</label>
-                   <textarea placeholder='Responsibilities (one per line)'>${(e.responsibilities||[]).join("\n")}</textarea>`;
-    const checkbox = div.querySelector(".currentJob");
-    const endDateInput = div.querySelector("input[type='month']:nth-child(4)");
-    checkbox.addEventListener("change", function(){
-      if(this.checked){ endDateInput.disabled=true; endDateInput.value=""; } else { endDateInput.disabled=false; }
-    });
-    if(checkbox.checked) endDateInput.disabled=true;
-    container.appendChild(div);
-  });
-}
-
-// Fill education from JSON
-function fillEducation(arr){
-  const container=document.getElementById("education"); container.innerHTML="";
-  if(!arr) return;
-  arr.forEach(e=>{
-    const div=document.createElement("div"); div.className="entry";
-    let cgpaValue = e.cgpa || "";
-    const deg = (e.degree || "").toLowerCase();
-    if(deg.includes("hsc") || deg.includes("ssc")) cgpaValue = "5.00";
-    div.innerHTML=`<input type='text' placeholder='Degree' value='${e.degree || ""}'>
-                   <input type='text' placeholder='Institute' value='${e.institute || ""}'>
-                   <input type='month' placeholder='Start Date' value='${e.start||""}'>
-                   <input type='month' placeholder='End Date' value='${e.end||""}'>
-                   <input type='number' placeholder='CGPA' step='0.01' min='0' max='5' value='${cgpaValue}'>`;
-    container.appendChild(div);
-  });
 }
 
 // Generate resume preview
@@ -187,16 +365,15 @@ function updatePreview(){
             <h2>Professional Summary</h2>
             <p>${document.getElementById("summary").value}</p>`;
 
-  // Experience
   const exps=document.querySelectorAll("#experience .entry");
   if(exps.length){ html+="<h2>Experience</h2>";
     exps.forEach(e=>{
-      const title=e.querySelector("input:nth-child(1)").value;
-      const company=e.querySelector("input:nth-child(2)").value;
-      const start=formatMonthYear(e.querySelector("input:nth-child(3)").value);
-      const endInput = e.querySelector("input:nth-child(4)");
+      const title=e.querySelector("input[placeholder='Job Title']").value;
+      const company=e.querySelector("input[placeholder='Company Name']").value;
+      const start=formatMonthYear(e.querySelector("input[type='month']:nth-child(3)").value);
+      const endInput = e.querySelector("input[type='month']:nth-child(4)");
       const currentCheckbox = e.querySelector(".currentJob");
-      const end = currentCheckbox && currentCheckbox.checked ? "Present" : formatMonthYear(endInput.value);
+      const end = currentCheckbox.checked ? "Present" : formatMonthYear(endInput.value);
       const res=e.querySelector("textarea").value.split("\n").filter(Boolean);
       html+=`<div style="display:flex; justify-content:space-between;">
                 <div style="text-align:left;">
@@ -209,7 +386,6 @@ function updatePreview(){
     });
   }
 
-  // Education
   const edus=document.querySelectorAll("#education .entry");
   if(edus.length){ html+="<h2>Education</h2>";
     edus.forEach(e=>{
@@ -229,7 +405,6 @@ function updatePreview(){
     });
   }
 
-  // Skills, Achievements, Certifications
   function sectionToHtml(id,title){
     const vals=[...document.querySelectorAll(`#${id} input`)].map(i=>i.value).filter(Boolean);
     if(vals.length){ html+=`<h2>${title}</h2><ul>`; vals.forEach(v=>html+=`<li>${v}</li>`); html+="</ul>"; }
@@ -246,10 +421,10 @@ function updatePreview(){
 // Download DOCX
 function downloadDocx(){
   const content = document.getElementById("resumePreview").innerHTML;
-  const converted = htmlDocx.asBlob(`<!DOCTYPE html><html><body>${content}</body></html>`);
+  const fullContent = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Resume</title></head><body>${content}</body></html>`;
+  const converted = htmlDocx.asBlob(fullContent);
   saveAs(converted,"ATS-Friendly-Resume.docx");
 }
 </script>
-</div>
 </body>
 </html>
