@@ -1,0 +1,757 @@
+[
+[
+[
+[
+{
+  "profiles": [
+    {
+      "title": "Software Engineer",
+      "summary": "Experienced developer specializing in modern web technologies and scalable applications.",
+      "technical_skills": ["JavaScript", "React", "Node.js", "MongoDB", "Git"],
+      "soft_skills": ["Problem-Solving", "Teamwork", "Adaptability", "Communication"],
+      "experience": [
+        { "company": "TechVision", "role": "Frontend Developer", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Improved application performance by 30%",
+        "Delivered multiple high-quality projects on time"
+      ]
+    },
+    {
+      "title": "Data Analyst",
+      "summary": "Detail-oriented analyst skilled at extracting insights from large datasets and creating dashboards.",
+      "technical_skills": ["Python", "SQL", "Tableau", "Excel", "Pandas"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Critical Thinking", "Collaboration"],
+      "experience": [
+        { "company": "DataWorks Ltd.", "role": "Data Analyst", "start": "2019", "end": "2022" }
+      ],
+      "achievements": [
+        "Reduced reporting time by 40% with automated dashboards",
+        "Identified cost-saving opportunities worth $150k"
+      ]
+    },
+    {
+      "title": "UI/UX Designer",
+      "summary": "Creative designer passionate about intuitive, user-friendly digital experiences.",
+      "technical_skills": ["Figma", "Adobe XD", "Photoshop", "Illustrator"],
+      "soft_skills": ["Creativity", "Empathy", "Attention to Detail", "Collaboration"],
+      "experience": [
+        { "company": "DesignPro Studio", "role": "UX Designer", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Boosted user engagement by 25% with new UI",
+        "Created reusable design templates across projects"
+      ]
+    },
+    {
+      "title": "Digital Marketer",
+      "summary": "Marketing professional with expertise in SEO, SEM, and social media campaigns.",
+      "technical_skills": ["SEO", "Google Analytics", "Facebook Ads", "Content Marketing"],
+      "soft_skills": ["Creativity", "Persuasion", "Time Management", "Adaptability"],
+      "experience": [
+        { "company": "GrowthMedia", "role": "Digital Marketing Specialist", "start": "2018", "end": "2022" }
+      ],
+      "achievements": [
+        "Increased organic traffic by 50%",
+        "Managed ad campaigns generating $200k revenue"
+      ]
+    },
+    {
+      "title": "Project Manager",
+      "summary": "Certified project manager skilled in leading cross-functional teams and delivering projects on time.",
+      "technical_skills": ["Agile", "Scrum", "Jira", "MS Project"],
+      "soft_skills": ["Leadership", "Decision-Making", "Organization", "Communication"],
+      "experience": [
+        { "company": "BuildRight Corp", "role": "Project Manager", "start": "2017", "end": "2022" }
+      ],
+      "achievements": [
+        "Delivered 15+ projects successfully",
+        "Improved project delivery time by 20%"
+      ]
+    },
+    {
+      "title": "Network Engineer",
+      "summary": "Expert in designing, configuring, and troubleshooting enterprise networks.",
+      "technical_skills": ["Cisco Routing", "Switching", "Firewall", "VPN"],
+      "soft_skills": ["Problem-Solving", "Collaboration", "Critical Thinking", "Adaptability"],
+      "experience": [
+        { "company": "NetSecure", "role": "Network Engineer", "start": "2018", "end": "2022" }
+      ],
+      "achievements": [
+        "Maintained 99.9% network uptime",
+        "Optimized security protocols reducing threats by 40%"
+      ]
+    },
+    {
+      "title": "Content Writer",
+      "summary": "Versatile writer skilled in producing SEO-friendly articles, blogs, and marketing copy.",
+      "technical_skills": ["SEO Writing", "Copywriting", "WordPress", "Content Strategy"],
+      "soft_skills": ["Creativity", "Adaptability", "Research", "Communication"],
+      "experience": [
+        { "company": "WriteSmart Media", "role": "Content Writer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Published 300+ articles across niches",
+        "Boosted website ranking on Google SERP"
+      ]
+    },
+    {
+      "title": "Cybersecurity Analyst",
+      "summary": "Dedicated to protecting systems and networks through vulnerability testing and threat analysis.",
+      "technical_skills": ["Penetration Testing", "SIEM", "Firewall Management", "Linux Security"],
+      "soft_skills": ["Critical Thinking", "Problem-Solving", "Attention to Detail", "Adaptability"],
+      "experience": [
+        { "company": "SecureOps", "role": "Cybersecurity Analyst", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Mitigated 200+ security incidents",
+        "Reduced phishing attack success rate by 80%"
+      ]
+    },
+    {
+      "title": "Cloud Architect",
+      "summary": "Specialist in cloud infrastructure design, migration, and optimization.",
+      "technical_skills": ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
+      "soft_skills": ["Leadership", "Problem-Solving", "Collaboration", "Adaptability"],
+      "experience": [
+        { "company": "CloudTech Solutions", "role": "Cloud Architect", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Led cloud migration saving $100k annually",
+        "Implemented scalable solutions handling 1M+ users"
+      ]
+    },
+    {
+      "title": "Business Analyst",
+      "summary": "Focused on bridging business needs with technical solutions to optimize processes.",
+      "technical_skills": ["UML", "SQL", "Agile Methodologies", "Requirement Gathering"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Communication", "Teamwork"],
+      "experience": [
+        { "company": "BizSolutions", "role": "Business Analyst", "start": "2019", "end": "2022" }
+      ],
+      "achievements": [
+        "Increased operational efficiency by 15%",
+        "Documented 50+ business processes"
+      ]
+    }
+  ]
+},
+
+{
+  "profiles": [
+    {
+      "title": "Financial Analyst",
+      "summary": "Expert in financial modeling, forecasting, and investment analysis.",
+      "technical_skills": ["Excel", "Power BI", "SQL", "Financial Modeling"],
+      "soft_skills": ["Analytical Thinking", "Decision Making", "Problem-Solving", "Communication"],
+      "experience": [
+        { "company": "FinEdge", "role": "Financial Analyst", "start": "2018", "end": "2022" }
+      ],
+      "achievements": [
+        "Built financial models that improved forecast accuracy by 20%",
+        "Advised investment strategies yielding 15% ROI"
+      ]
+    },
+    {
+      "title": "HR Specialist",
+      "summary": "Passionate HR professional focused on recruitment, onboarding, and employee engagement.",
+      "technical_skills": ["HRIS", "Talent Acquisition", "Payroll Systems", "Compliance"],
+      "soft_skills": ["Empathy", "Communication", "Conflict Resolution", "Leadership"],
+      "experience": [
+        { "company": "PeopleFirst", "role": "HR Specialist", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Hired 200+ employees across departments",
+        "Improved employee retention by 18%"
+      ]
+    },
+    {
+      "title": "Mechanical Engineer",
+      "summary": "Engineer experienced in designing, testing, and optimizing mechanical systems.",
+      "technical_skills": ["AutoCAD", "SolidWorks", "ANSYS", "MATLAB"],
+      "soft_skills": ["Problem-Solving", "Teamwork", "Attention to Detail", "Creativity"],
+      "experience": [
+        { "company": "MechDesign Ltd.", "role": "Mechanical Engineer", "start": "2017", "end": "2022" }
+      ],
+      "achievements": [
+        "Designed a system reducing manufacturing costs by 12%",
+        "Developed prototypes for 10+ products"
+      ]
+    },
+    {
+      "title": "Civil Engineer",
+      "summary": "Skilled in infrastructure design, construction management, and safety compliance.",
+      "technical_skills": ["AutoCAD", "STAAD Pro", "Project Management", "Surveying"],
+      "soft_skills": ["Leadership", "Organization", "Problem-Solving", "Collaboration"],
+      "experience": [
+        { "company": "BuildMax", "role": "Civil Engineer", "start": "2016", "end": "2022" }
+      ],
+      "achievements": [
+        "Completed 5+ major infrastructure projects",
+        "Reduced project delays by 25%"
+      ]
+    },
+    {
+      "title": "Electrical Engineer",
+      "summary": "Expert in designing and maintaining electrical systems for industrial projects.",
+      "technical_skills": ["Circuit Design", "PLC Programming", "AutoCAD Electrical", "MATLAB"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Collaboration", "Adaptability"],
+      "experience": [
+        { "company": "Electra Systems", "role": "Electrical Engineer", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Developed efficient control circuits saving 15% energy",
+        "Implemented safety measures reducing failures by 30%"
+      ]
+    },
+    {
+      "title": "Operations Manager",
+      "summary": "Leader with expertise in managing daily operations and optimizing supply chains.",
+      "technical_skills": ["ERP Systems", "Lean Six Sigma", "Inventory Management", "Data Analysis"],
+      "soft_skills": ["Leadership", "Strategic Planning", "Time Management", "Collaboration"],
+      "experience": [
+        { "company": "OptiFlow Inc.", "role": "Operations Manager", "start": "2017", "end": "2022" }
+      ],
+      "achievements": [
+        "Reduced operational costs by 22%",
+        "Improved supply chain efficiency"
+      ]
+    },
+    {
+      "title": "Pharmacist",
+      "summary": "Healthcare professional focused on dispensing medications and ensuring patient safety.",
+      "technical_skills": ["Pharmacology", "Prescription Management", "Drug Safety", "Inventory Control"],
+      "soft_skills": ["Attention to Detail", "Empathy", "Communication", "Problem-Solving"],
+      "experience": [
+        { "company": "HealthFirst Pharmacy", "role": "Pharmacist", "start": "2018", "end": "2022" }
+      ],
+      "achievements": [
+        "Reduced medication errors by 30%",
+        "Implemented a digital tracking system"
+      ]
+    },
+    {
+      "title": "Teacher",
+      "summary": "Experienced educator passionate about student growth and curriculum development.",
+      "technical_skills": ["Lesson Planning", "Curriculum Development", "Classroom Management", "eLearning Tools"],
+      "soft_skills": ["Communication", "Patience", "Creativity", "Adaptability"],
+      "experience": [
+        { "company": "BrightFuture Academy", "role": "Teacher", "start": "2016", "end": "2022" }
+      ],
+      "achievements": [
+        "Improved student pass rates by 20%",
+        "Introduced engaging e-learning modules"
+      ]
+    },
+    {
+      "title": "Graphic Designer",
+      "summary": "Creative designer skilled in digital and print media designs.",
+      "technical_skills": ["Photoshop", "Illustrator", "InDesign", "Canva"],
+      "soft_skills": ["Creativity", "Time Management", "Adaptability", "Attention to Detail"],
+      "experience": [
+        { "company": "PixelCraft Studio", "role": "Graphic Designer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Delivered 100+ client projects",
+        "Designed branding for startups across industries"
+      ]
+    },
+    {
+      "title": "Research Scientist",
+      "summary": "Scientist with expertise in experimental design and scientific writing.",
+      "technical_skills": ["Data Analysis", "Lab Techniques", "Research Methodology", "Python"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Curiosity", "Collaboration"],
+      "experience": [
+        { "company": "InnoLab", "role": "Research Scientist", "start": "2017", "end": "2022" }
+      ],
+      "achievements": [
+        "Published 10+ peer-reviewed papers",
+        "Secured $200k research funding"
+      ]
+    },
+    {
+      "title": "Mobile App Developer",
+      "summary": "Developer skilled in building iOS and Android apps with a focus on performance.",
+      "technical_skills": ["Kotlin", "Swift", "Flutter", "Firebase"],
+      "soft_skills": ["Problem-Solving", "Creativity", "Teamwork", "Adaptability"],
+      "experience": [
+        { "company": "Appify Tech", "role": "Mobile Developer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Launched 5+ mobile apps with 50k+ downloads",
+        "Reduced app crash rate by 40%"
+      ]
+    },
+    {
+      "title": "Customer Support Specialist",
+      "summary": "Professional providing exceptional customer service and support.",
+      "technical_skills": ["CRM Tools", "Ticketing Systems", "Live Chat Support", "Email Handling"],
+      "soft_skills": ["Communication", "Empathy", "Problem-Solving", "Adaptability"],
+      "experience": [
+        { "company": "SupportHub", "role": "Customer Support Specialist", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Maintained 95% customer satisfaction score",
+        "Resolved 1,000+ tickets monthly"
+      ]
+    },
+    {
+      "title": "AI Engineer",
+      "summary": "Specialist in machine learning, deep learning, and AI system deployment.",
+      "technical_skills": ["TensorFlow", "PyTorch", "Python", "NLP"],
+      "soft_skills": ["Problem-Solving", "Creativity", "Analytical Thinking", "Collaboration"],
+      "experience": [
+        { "company": "AI Innovators", "role": "AI Engineer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Built AI models with 90% accuracy",
+        "Automated processes saving 500+ hours annually"
+      ]
+    }
+  ]
+}
+],
+{
+  "profiles": [
+    {
+      "title": "SEO Specialist",
+      "summary": "Expert in optimizing websites for search engines to increase traffic and ranking.",
+      "technical_skills": ["SEO", "Google Analytics", "Keyword Research", "Content Optimization"],
+      "soft_skills": ["Analytical Thinking", "Creativity", "Communication", "Problem-Solving"],
+      "experience": [
+        { "company": "SearchBoost", "role": "SEO Specialist", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Increased organic traffic by 70%",
+        "Ranked multiple websites on first page of Google"
+      ]
+    },
+    {
+      "title": "QA Engineer",
+      "summary": "Focused on ensuring software quality through manual and automated testing.",
+      "technical_skills": ["Selenium", "Postman", "Jira", "Manual Testing", "Automation Testing"],
+      "soft_skills": ["Attention to Detail", "Problem-Solving", "Teamwork", "Time Management"],
+      "experience": [
+        { "company": "QualityWorks", "role": "QA Engineer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Reduced software bugs by 40%",
+        "Implemented automated testing framework"
+      ]
+    },
+    {
+      "title": "Product Manager",
+      "summary": "Oversees product lifecycle from ideation to launch with customer-focused solutions.",
+      "technical_skills": ["Product Roadmap", "Agile", "Market Analysis", "User Research"],
+      "soft_skills": ["Leadership", "Decision-Making", "Communication", "Strategic Thinking"],
+      "experience": [
+        { "company": "NextGen Products", "role": "Product Manager", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Launched 5+ successful products",
+        "Increased customer retention by 20%"
+      ]
+    },
+    {
+      "title": "Cloud Engineer",
+      "summary": "Expert in designing and managing cloud infrastructure on AWS and Azure.",
+      "technical_skills": ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
+      "soft_skills": ["Problem-Solving", "Collaboration", "Adaptability", "Analytical Thinking"],
+      "experience": [
+        { "company": "CloudWorks", "role": "Cloud Engineer", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Deployed scalable cloud solutions supporting 1M+ users",
+        "Reduced cloud costs by 25%"
+      ]
+    },
+    {
+      "title": "DevOps Engineer",
+      "summary": "Specialist in CI/CD pipelines, server management, and automation.",
+      "technical_skills": ["Jenkins", "Docker", "Kubernetes", "AWS", "Linux"],
+      "soft_skills": ["Problem-Solving", "Collaboration", "Time Management", "Adaptability"],
+      "experience": [
+        { "company": "OpsSolutions", "role": "DevOps Engineer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Implemented CI/CD pipelines reducing deployment time by 50%",
+        "Automated server provisioning saving 200 hours annually"
+      ]
+    },
+    {
+      "title": "Front-End Developer",
+      "summary": "Builds responsive and interactive user interfaces with modern web technologies.",
+      "technical_skills": ["HTML", "CSS", "JavaScript", "React", "Vue.js"],
+      "soft_skills": ["Creativity", "Problem-Solving", "Teamwork", "Attention to Detail"],
+      "experience": [
+        { "company": "WebCraft", "role": "Front-End Developer", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Developed 10+ responsive websites",
+        "Optimized front-end performance by 30%"
+      ]
+    },
+    {
+      "title": "Back-End Developer",
+      "summary": "Specialist in server-side logic, database management, and API integration.",
+      "technical_skills": ["Node.js", "Python", "Express", "MongoDB", "SQL"],
+      "soft_skills": ["Problem-Solving", "Analytical Thinking", "Collaboration", "Time Management"],
+      "experience": [
+        { "company": "CodeLabs", "role": "Back-End Developer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Built RESTful APIs serving 500k+ users",
+        "Optimized database queries improving response time by 40%"
+      ]
+    },
+    {
+      "title": "Machine Learning Engineer",
+      "summary": "Develops AI models for predictive analytics, NLP, and computer vision tasks.",
+      "technical_skills": ["Python", "TensorFlow", "PyTorch", "scikit-learn", "NLP"],
+      "soft_skills": ["Problem-Solving", "Analytical Thinking", "Creativity", "Teamwork"],
+      "experience": [
+        { "company": "AI Labs", "role": "ML Engineer", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Built ML models achieving 95% accuracy",
+        "Deployed AI solutions for real-time analytics"
+      ]
+    },
+    {
+      "title": "Social Media Manager",
+      "summary": "Manages social media platforms to increase engagement and brand awareness.",
+      "technical_skills": ["Content Creation", "Analytics", "Social Ads", "SEO"],
+      "soft_skills": ["Creativity", "Communication", "Adaptability", "Time Management"],
+      "experience": [
+        { "company": "BrandBoost", "role": "Social Media Manager", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Increased followers by 60% across platforms",
+        "Executed campaigns generating 200k+ impressions"
+      ]
+    },
+    {
+      "title": "Electrical Technician",
+      "summary": "Maintains and troubleshoots electrical systems in industrial and commercial setups.",
+      "technical_skills": ["Circuit Testing", "Maintenance", "PLC", "Electrical Safety"],
+      "soft_skills": ["Problem-Solving", "Attention to Detail", "Collaboration", "Time Management"],
+      "experience": [
+        { "company": "ElectroTech", "role": "Electrical Technician", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Reduced system downtime by 25%",
+        "Installed and maintained electrical systems for 50+ projects"
+      ]
+    },
+    {
+      "title": "Marketing Analyst",
+      "summary": "Analyzes market trends to inform strategy and increase ROI.",
+      "technical_skills": ["Google Analytics", "Excel", "SQL", "Market Research"],
+      "soft_skills": ["Analytical Thinking", "Communication", "Problem-Solving", "Collaboration"],
+      "experience": [
+        { "company": "MarketWise", "role": "Marketing Analyst", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Improved campaign ROI by 30%",
+        "Generated actionable insights from large datasets"
+      ]
+    },
+    {
+      "title": "Video Editor",
+      "summary": "Creates professional videos for social media, marketing, and promotions.",
+      "technical_skills": ["Adobe Premiere", "After Effects", "Final Cut Pro", "Color Grading"],
+      "soft_skills": ["Creativity", "Time Management", "Attention to Detail", "Collaboration"],
+      "experience": [
+        { "company": "MediaWorks", "role": "Video Editor", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Produced 100+ videos for clients",
+        "Increased viewer engagement on video campaigns by 40%"
+      ]
+    },
+    {
+      "title": "Technical Writer",
+      "summary": "Produces clear and concise documentation for software and hardware products.",
+      "technical_skills": ["Technical Writing", "Markdown", "API Documentation", "Word"],
+      "soft_skills": ["Attention to Detail", "Communication", "Research", "Time Management"],
+      "experience": [
+        { "company": "DocuTech", "role": "Technical Writer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Created documentation used by 10,000+ users",
+        "Reduced support tickets by 25% through clear manuals"
+      ]
+    }
+  ]
+}
+],
+{
+  "profiles": [
+    {
+      "title": "Textile Engineer",
+      "summary": "Experienced in designing, producing, and improving textile products with focus on quality and efficiency.",
+      "technical_skills": ["Fabric Analysis", "Textile Machinery", "CAD for Textiles", "Quality Control"],
+      "soft_skills": ["Attention to Detail", "Problem-Solving", "Teamwork", "Creativity"],
+      "experience": [
+        { "company": "FabricTech Industries", "role": "Textile Engineer", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Improved production efficiency by 20%",
+        "Developed new fabric patterns increasing sales by 15%"
+      ]
+    },
+    {
+      "title": "Data Analyst",
+      "summary": "Analyzes data to provide insights for business decisions and performance improvement.",
+      "technical_skills": ["Python", "R", "SQL", "Excel", "Power BI"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Attention to Detail", "Communication"],
+      "experience": [
+        { "company": "DataInsights", "role": "Data Analyst", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Delivered reports reducing operational costs by 15%",
+        "Automated data pipelines improving efficiency"
+      ]
+    },
+    {
+      "title": "UI/UX Designer",
+      "summary": "Designs intuitive and user-friendly interfaces for web and mobile applications.",
+      "technical_skills": ["Figma", "Adobe XD", "Sketch", "User Research", "Wireframing"],
+      "soft_skills": ["Creativity", "Communication", "Problem-Solving", "Collaboration"],
+      "experience": [
+        { "company": "DesignHub", "role": "UI/UX Designer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Improved app usability scores by 25%",
+        "Designed interfaces used by 100k+ users"
+      ]
+    },
+    {
+      "title": "Network Engineer",
+      "summary": "Maintains and secures enterprise networks ensuring optimal performance.",
+      "technical_skills": ["Cisco", "Networking", "Firewall Configuration", "VPN", "Troubleshooting"],
+      "soft_skills": ["Problem-Solving", "Analytical Thinking", "Collaboration", "Time Management"],
+      "experience": [
+        { "company": "NetSecure", "role": "Network Engineer", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Implemented network upgrades improving uptime by 20%",
+        "Configured secure VPN for 500+ employees"
+      ]
+    },
+    {
+      "title": "Blockchain Developer",
+      "summary": "Develops decentralized applications and smart contracts using blockchain technology.",
+      "technical_skills": ["Ethereum", "Solidity", "Smart Contracts", "Web3.js", "Python"],
+      "soft_skills": ["Problem-Solving", "Analytical Thinking", "Creativity", "Collaboration"],
+      "experience": [
+        { "company": "ChainWorks", "role": "Blockchain Developer", "start": "2020", "end": "2023" }
+      ],
+      "achievements": [
+        "Deployed 5+ smart contracts with zero errors",
+        "Built decentralized apps for financial transactions"
+      ]
+    },
+    {
+      "title": "Content Writer",
+      "summary": "Creates engaging content for blogs, websites, and marketing campaigns.",
+      "technical_skills": ["SEO", "WordPress", "Copywriting", "Content Strategy"],
+      "soft_skills": ["Creativity", "Communication", "Time Management", "Research"],
+      "experience": [
+        { "company": "WriteNow", "role": "Content Writer", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Published 200+ articles generating high web traffic",
+        "Optimized content improving search rankings"
+      ]
+    },
+    {
+      "title": "Biomedical Engineer",
+      "summary": "Designs medical devices and improves healthcare technologies.",
+      "technical_skills": ["Medical Imaging", "Device Design", "MATLAB", "Biomedical Systems"],
+      "soft_skills": ["Problem-Solving", "Creativity", "Attention to Detail", "Teamwork"],
+      "experience": [
+        { "company": "BioMedTech", "role": "Biomedical Engineer", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Developed devices used in hospitals improving patient care",
+        "Reduced equipment malfunction rates by 15%"
+      ]
+    },
+    {
+      "title": "Cybersecurity Specialist",
+      "summary": "Protects systems and networks from cyber threats and attacks.",
+      "technical_skills": ["Penetration Testing", "Network Security", "Firewalls", "Ethical Hacking"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Attention to Detail", "Communication"],
+      "experience": [
+        { "company": "SecureNet", "role": "Cybersecurity Specialist", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Prevented 500+ security breaches",
+        "Implemented security protocols reducing vulnerabilities by 40%"
+      ]
+    },
+    {
+      "title": "Game Developer",
+      "summary": "Develops interactive games for desktop and mobile platforms.",
+      "technical_skills": ["Unity", "C#", "Blender", "Game Physics", "AI Integration"],
+      "soft_skills": ["Creativity", "Problem-Solving", "Teamwork", "Adaptability"],
+      "experience": [
+        { "company": "PlayTech Studios", "role": "Game Developer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Published 3 mobile games with 50k+ downloads",
+        "Optimized game performance reducing lag by 30%"
+      ]
+    },
+    {
+      "title": "Cloud Architect",
+      "summary": "Designs and implements cloud infrastructure for scalable enterprise solutions.",
+      "technical_skills": ["AWS", "Azure", "GCP", "Docker", "Kubernetes"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Leadership", "Collaboration"],
+      "experience": [
+        { "company": "CloudMasters", "role": "Cloud Architect", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Designed cloud systems supporting 1M+ users",
+        "Reduced cloud deployment costs by 20%"
+      ]
+    }
+  ]
+}
+],
+{
+  "profiles": [
+    {
+      "title": "Civil Engineer",
+      "summary": "Designs and supervises construction projects ensuring safety and efficiency.",
+      "technical_skills": ["AutoCAD", "Structural Analysis", "Project Management", "Surveying"],
+      "soft_skills": ["Problem-Solving", "Attention to Detail", "Teamwork", "Leadership"],
+      "experience": [
+        { "company": "BuildPro", "role": "Civil Engineer", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Completed 10+ infrastructure projects on time",
+        "Reduced project costs by 15% through optimized planning"
+      ]
+    },
+    {
+      "title": "Digital Marketer",
+      "summary": "Develops online marketing campaigns to improve brand visibility and conversions.",
+      "technical_skills": ["SEO", "PPC", "Google Ads", "Social Media Marketing", "Email Marketing"],
+      "soft_skills": ["Creativity", "Analytical Thinking", "Communication", "Time Management"],
+      "experience": [
+        { "company": "MarketBoost", "role": "Digital Marketer", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Increased website traffic by 80%",
+        "Generated 200k+ leads through campaigns"
+      ]
+    },
+    {
+      "title": "HR Manager",
+      "summary": "Manages recruitment, employee relations, and organizational policies.",
+      "technical_skills": ["Recruitment", "HRIS", "Employee Engagement", "Payroll Management"],
+      "soft_skills": ["Leadership", "Communication", "Problem-Solving", "Time Management"],
+      "experience": [
+        { "company": "PeopleFirst", "role": "HR Manager", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Reduced employee turnover by 20%",
+        "Implemented new HR software improving efficiency"
+      ]
+    },
+    {
+      "title": "Mechanical Engineer",
+      "summary": "Designs, tests, and maintains mechanical systems and devices.",
+      "technical_skills": ["AutoCAD", "SolidWorks", "Thermodynamics", "Manufacturing Processes"],
+      "soft_skills": ["Problem-Solving", "Attention to Detail", "Teamwork", "Analytical Thinking"],
+      "experience": [
+        { "company": "MechTech", "role": "Mechanical Engineer", "start": "2016", "end": "2023" }
+      ],
+      "achievements": [
+        "Developed machines reducing production time by 25%",
+        "Improved system efficiency in multiple projects"
+      ]
+    },
+    {
+      "title": "Electrical Engineer",
+      "summary": "Designs and maintains electrical systems in industrial and commercial setups.",
+      "technical_skills": ["Circuit Design", "Power Systems", "PLC", "Maintenance"],
+      "soft_skills": ["Problem-Solving", "Attention to Detail", "Collaboration", "Time Management"],
+      "experience": [
+        { "company": "ElectroWorks", "role": "Electrical Engineer", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Reduced system downtime by 20%",
+        "Implemented safety protocols reducing accidents"
+      ]
+    },
+    {
+      "title": "Mobile App Developer",
+      "summary": "Builds user-friendly mobile applications for iOS and Android platforms.",
+      "technical_skills": ["Flutter", "React Native", "Java", "Kotlin", "Swift"],
+      "soft_skills": ["Creativity", "Problem-Solving", "Teamwork", "Time Management"],
+      "experience": [
+        { "company": "AppWorld", "role": "Mobile App Developer", "start": "2019", "end": "2023" }
+      ],
+      "achievements": [
+        "Published 10+ apps on Play Store and App Store",
+        "Optimized app performance increasing user retention by 30%"
+      ]
+    },
+    {
+      "title": "Pharmaceutical Scientist",
+      "summary": "Researches and develops new drugs and medications for healthcare improvement.",
+      "technical_skills": ["Drug Formulation", "Pharmacology", "Lab Techniques", "Clinical Trials"],
+      "soft_skills": ["Analytical Thinking", "Attention to Detail", "Problem-Solving", "Teamwork"],
+      "experience": [
+        { "company": "PharmaLife", "role": "Pharmaceutical Scientist", "start": "2016", "end": "2023" }
+      ],
+      "achievements": [
+        "Developed two new drugs approved for clinical use",
+        "Published research in international journals"
+      ]
+    },
+    {
+      "title": "AI Researcher",
+      "summary": "Conducts research in artificial intelligence, machine learning, and robotics.",
+      "technical_skills": ["Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision"],
+      "soft_skills": ["Problem-Solving", "Creativity", "Analytical Thinking", "Collaboration"],
+      "experience": [
+        { "company": "AI Innovators", "role": "AI Researcher", "start": "2018", "end": "2023" }
+      ],
+      "achievements": [
+        "Published 10+ papers in AI conferences",
+        "Developed models with 95%+ accuracy"
+      ]
+    },
+    {
+      "title": "Civil Architect",
+      "summary": "Designs and plans buildings, ensuring aesthetic appeal and structural integrity.",
+      "technical_skills": ["AutoCAD", "SketchUp", "3D Modeling", "Project Management"],
+      "soft_skills": ["Creativity", "Attention to Detail", "Teamwork", "Communication"],
+      "experience": [
+        { "company": "BuildVision", "role": "Civil Architect", "start": "2016", "end": "2023" }
+      ],
+      "achievements": [
+        "Designed 15+ commercial and residential buildings",
+        "Improved project efficiency with modern design software"
+      ]
+    },
+    {
+      "title": "Software Architect",
+      "summary": "Designs software systems, ensures scalability and performance for enterprise solutions.",
+      "technical_skills": ["Java", "C#", "System Design", "Microservices", "Cloud Architecture"],
+      "soft_skills": ["Analytical Thinking", "Problem-Solving", "Leadership", "Communication"],
+      "experience": [
+        { "company": "SoftTech Solutions", "role": "Software Architect", "start": "2017", "end": "2023" }
+      ],
+      "achievements": [
+        "Designed scalable systems serving 1M+ users",
+        "Reduced software downtime by 40%"
+      ]
+    }
+  ]
+}
+]
