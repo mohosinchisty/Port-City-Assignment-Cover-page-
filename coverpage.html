@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assignment Cover Page</title>
+<style>
+@import url('https://fonts.cdnfonts.com/css/led-dot-matrix');
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-container button {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px 5px 0 0;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-container button:hover {
+  background: linear-gradient(to right, #00f2fe, #4facfe);
+}
+
+/* Cover Page */
+.cover-page {
+  display: none;
+  width: 794px;
+  height: 1123px;
+  margin: auto;
+  position: relative;
+  background: url('https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/background.png') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cover-page::before {
+  content: "Port City International\nUniversity";
+  position: absolute;
+  font-family: 'LED Dot-Matrix', monospace;
+  font-size: 40px;
+  color: rgba(0,0,0,0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  white-space: pre;
+  text-align: center;
+  z-index: 0;
+}
+
+.university-logo {
+  width: 120px;
+  height: 120px;
+  margin-top: 30px;
+  object-fit: contain;
+  z-index: 1;
+  position: relative;
+}
+
+h1,h2 { margin: 10px 0; position: relative; z-index: 1; }
+h1 { text-decoration: underline; }
+
+.box {
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 20px;
+  text-align: left;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.small-box { height: 60px; }
+.large-box {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.large-box b { display: inline-block; width: 100px; }
+
+.flex-row { display: flex; gap: 20px; justify-content: space-between; margin-top: 15px; }
+.flex-row .large-box { flex: 1; }
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+  font-family: 'LED Dot-Matrix', monospace;
+  z-index: 1;
+  position: relative;
+}
+
+/* Print settings */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0;
+    padding: 0;
+    background: none !important;
+  }
+  .form-container { display: none !important; }
+  .cover-page {
+    display: block !important;
+    box-shadow: none;
+    width: 794px;
+    height: 1123px;
+    margin: 0;
+    page-break-before: always;
+    background-size: cover !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Enter Assignment Details</h2>
+  <label>Assignment Topic:</label><input type="text" id="topic"><br>
+  <label>Course Title:</label><input type="text" id="courseTitle"><br>
+  <label>Course Code:</label><input type="text" id="courseCode"><br>
+  <label>Department Name:</label><input type="text" id="departmentName"><br>
+  <label>Semester / Year:</label><input type="text" id="semester"><br>
+  <label>Submitted To (Name):</label><input type="text" id="teacherName"><br>
+  <label>Department (Teacher):</label><input type="text" id="teacherDept"><br>
+  <label>Submitted By (Student Name):</label><input type="text" id="studentName"><br>
+  <label>Student ID:</label><input type="text" id="studentId"><br>
+  <label>Department (Student):</label><input type="text" id="studentDept"><br>
+  <label>Date of Submission:</label><input type="date" id="submissionDate"><br>
+  
+  <label>Upload Background (optional):</label><input type="file" id="bgUpload" accept="image/*"><br>
+  <label>Upload Logo (optional):</label><input type="file" id="logoUpload" accept="image/*"><br>
+
+  <button onclick="generateCover()">Generate Cover Page</button>
+  <button onclick="downloadCoverPNG()">Download as PNG</button>
+  <button onclick="window.print()">Save & Print</button>
+</div>
+
+<div class="cover-page" id="coverPage">
+  <img class="university-logo" id="coverLogo" src="https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/logo.png" alt="University Logo">
+  <h2>Port City International University</h2>
+  <h1>Assignment On</h1>
+
+  <div class="box small-box"><b>Topic:</b> <span id="outTopic"></span></div>
+  <div class="box small-box"><b>Course Title:</b> <span id="outCourseTitle"></span></div>
+  <div class="box small-box"><b>Course Code:</b> <span id="outCourseCode"></span></div>
+  <div class="box small-box"><b>Department Name:</b> <span id="outDepartment"></span></div>
+  <div class="box small-box"><b>Semester / Year:</b> <span id="outSemester"></span></div>
+
+  <div class="flex-row">
+    <div class="box large-box">
+      <div><b>Submitted To</b></div>
+      <div><b>Name:</b> <span id="outTeacherName"></span></div>
+      <div><b>Department:</b> <span id="outTeacherDept"></span></div>
+    </div>
+    <div class="box large-box">
+      <div><b>Submitted By</b></div>
+      <div><b>Name:</b> <span id="outStudentName"></span></div>
+      <div><b>ID:</b> <span id="outStudentId"></span></div>
+      <div><b>Department:</b> <span id="outStudentDept"></span></div>
+    </div>
+  </div>
+
+  <div class="box small-box"><b>Date of Submission:</b> <span id="outDate"></span></div>
+  <div class="footer">Made By Sayed Mohosin Chisty</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const defaultBg = "https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/background.png";
+const defaultLogo = "https://raw.githubusercontent.com/mohosinchisty/Port-City-Assignment-Cover-page-/main/logo.png";
+
+function generateCover() {
+  document.getElementById("outTopic").innerText = document.getElementById("topic").value;
+  document.getElementById("outCourseTitle").innerText = document.getElementById("courseTitle").value;
+  document.getElementById("outCourseCode").innerText = document.getElementById("courseCode").value;
+  document.getElementById("outDepartment").innerText = document.getElementById("departmentName").value;
+  document.getElementById("outSemester").innerText = document.getElementById("semester").value;
+  document.getElementById("outTeacherName").innerText = document.getElementById("teacherName").value;
+  document.getElementById("outTeacherDept").innerText = document.getElementById("teacherDept").value;
+  document.getElementById("outStudentName").innerText = document.getElementById("studentName").value;
+  document.getElementById("outStudentId").innerText = document.getElementById("studentId").value;
+  document.getElementById("outStudentDept").innerText = document.getElementById("studentDept").value;
+  document.getElementById("outDate").innerText = document.getElementById("submissionDate").value;
+
+  const cover = document.getElementById("coverPage");
+  const logoImg = document.getElementById("coverLogo");
+
+  // Background upload or fallback
+  const bgFile = document.getElementById("bgUpload").files[0];
+  if (bgFile) {
+    const reader = new FileReader();
+    reader.onload = e => cover.style.backgroundImage = `url(${e.target.result})`;
+    reader.readAsDataURL(bgFile);
+  } else {
+    cover.style.backgroundImage = `url(${defaultBg})`;
+  }
+
+  // Logo upload or fallback
+  const logoFile = document.getElementById("logoUpload").files[0];
+  if (logoFile) {
+    const reader = new FileReader();
+    reader.onload = e => logoImg.src = e.target.result;
+    reader.readAsDataURL(logoFile);
+  } else {
+    logoImg.src = defaultLogo;
+  }
+
+  cover.style.display = "block";
+}
+
+function downloadCoverPNG() {
+  const cover = document.getElementById("coverPage");
+  html2canvas(cover, {scale: 2, useCORS: true}).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'cover-page.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+</script>
+
+</body>
+</html>
