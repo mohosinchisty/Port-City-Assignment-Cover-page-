@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATS Friendly Resume Generator</title>
+<title>Make Easy - ATS Friendly Resume Generator</title>
 <style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f2f5; }
+body { font-family: Arial,sans-serif; margin:0; padding:0; background:#f0f2f5; }
 .container { max-width:900px; margin:auto; padding:20px; }
 h2,h3 { margin-top:15px; color:#333; }
 input, textarea, select, button { width:100%; margin:5px 0; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box; font-size:13px; }
-button { background:#0073e6; color:#fff; border:none; cursor:pointer; font-weight:bold; transition:0.3s; }
-button:hover { background:#005bb5; }
+button { background:#4CAF50; color:#fff; border:none; cursor:pointer; font-weight:bold; transition:0.3s; }
+button:hover { background:#45a049; }
 .entry { margin-bottom:8px; background:#fff; padding:8px; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
 .page { width:210mm; min-height:297mm; padding:15mm; margin-top:20px; background:white; box-shadow:0 0 5px rgba(0,0,0,0.1); box-sizing:border-box; font-size:13px; line-height:1.3; }
-.page h1 { text-align:center; font-size:26px; margin-bottom:2px; color:#0073e6; }
+.page h1 { text-align:center; font-size:26px; margin-bottom:2px; color:#4CAF50; }
 .page p.title { text-align:center; font-size:16px; margin-top:0; margin-bottom:10px; font-weight:bold; }
-.page h2 { font-size:18px; margin-top:12px; color:#0073e6; }
+.page h2 { font-size:18px; margin-top:12px; color:#4CAF50; }
 .page p, .page li { font-size:13px; line-height:1.3; }
 ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 @media print {
@@ -29,10 +29,10 @@ ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 </head>
 <body>
 <div class="container">
-<h2>ATS Friendly Resume Generator</h2>
+<h2>Make Easy - ATS Friendly Resume Generator</h2>
 
 <input type="text" id="name" placeholder="Full Name">
-<input type="text" id="title" placeholder="Educational Title">
+<input type="text" id="title" placeholder="Job Title">
 <input type="text" id="email" placeholder="Email">
 <input type="text" id="phone" placeholder="Phone">
 <input type="text" id="linkedin" placeholder="LinkedIn">
@@ -112,24 +112,30 @@ function fillSection(sectionId, arr){
   if(arr && arr.length){ arr.forEach(v=>{ const input=document.createElement("input"); input.type="text"; input.value=v; container.appendChild(input); }); }
 }
 
-// AI Help
+// AI Help (fetch JSON from GitHub)
 async function aiHelp(){
-  const eduTitle = document.getElementById("title").value.trim().toLowerCase();
-  if(!eduTitle) return alert("Enter Educational Title");
-  const baseURL = "https://raw.githubusercontent.com/YourUsername/YourRepo/main/resume-data/";
-  const fileName = eduTitle.replace(/\s+/g,"_") + ".json";
+  const fileURL = "https://raw.githubusercontent.com/MohosinChisty/YourRepo/main/data.json"; // Replace YourRepo
   try{
-    const response = await fetch(baseURL + fileName);
-    if(!response.ok) return alert("No data found for this title on GitHub");
+    const response = await fetch(fileURL);
+    if(!response.ok) return alert("No data found on GitHub");
     const data = await response.json();
-    document.getElementById("summary").value = data.summary || "";
-    fillSection("techSkills", data.techSkills);
-    fillSection("softSkills", data.softSkills);
-    fillSection("achievements", data.achievements);
-    fillSection("certifications", data.certifications);
-    fillExperience(data.experience); fillEducation(data.education);
+    // Fill first profile for demo
+    const profile = data.profiles[0];
+    document.getElementById("name").value = profile.name || "";
+    document.getElementById("title").value = profile.title || "";
+    document.getElementById("email").value = profile.email || "";
+    document.getElementById("phone").value = profile.phone || "";
+    document.getElementById("linkedin").value = profile.linkedin || "";
+    document.getElementById("location").value = profile.location || "";
+    document.getElementById("summary").value = profile.summary || "";
+    fillSection("techSkills", profile.techSkills);
+    fillSection("softSkills", profile.softSkills);
+    fillSection("achievements", profile.achievements);
+    fillSection("certifications", profile.certifications);
+    fillExperience(profile.experience);
+    fillEducation(profile.education);
     updatePreview();
-  }catch(err){ console.error(err); alert("Error fetching JSON from GitHub"); }
+  }catch(err){ console.error(err); alert("Error fetching JSON"); }
 }
 
 // Fill experience from JSON
@@ -160,21 +166,22 @@ function fillEducation(arr){
   if(!arr) return;
   arr.forEach(e=>{
     const div=document.createElement("div"); div.className="entry";
-    let cgpaValue = e.cgpa || "";
-    const deg = (e.degree || "").toLowerCase();
-    if(deg.includes("hsc") || deg.includes("ssc")) cgpaValue = "5.00";
     div.innerHTML=`<input type='text' placeholder='Degree' value='${e.degree || ""}'>
                    <input type='text' placeholder='Institute' value='${e.institute || ""}'>
                    <input type='month' placeholder='Start Date' value='${e.start||""}'>
                    <input type='month' placeholder='End Date' value='${e.end||""}'>
-                   <input type='number' placeholder='CGPA' step='0.01' min='0' max='5' value='${cgpaValue}'>`;
+                   <input type='number' placeholder='CGPA' step='0.01' min='0' max='5' value='${e.cgpa||""}'>`;
     container.appendChild(div);
   });
 }
 
-// Generate resume preview
+// Generate preview
 function updatePreview(){
-  function formatMonthYear(dateStr){ if(!dateStr) return ""; const date=new Date(dateStr); const options={ year:'numeric', month:'short'}; return date.toLocaleDateString('en-US', options);}
+  const formatMonthYear = dateStr => {
+    if(!dateStr) return ""; 
+    const date = new Date(dateStr); 
+    return date.toLocaleDateString('en-US', {year:'numeric', month:'short'});
+  };
   let html=`<div class='page'>
             <h1>${document.getElementById("name").value}</h1>
             <p class="title">${document.getElementById("title").value}</p>
@@ -197,12 +204,8 @@ function updatePreview(){
       const end = currentCheckbox && currentCheckbox.checked ? "Present" : formatMonthYear(endInput.value);
       const res=e.querySelector("textarea").value.split("\n").filter(Boolean);
       html+=`<div style="display:flex; justify-content:space-between;">
-                <div style="text-align:left;">
-                  <div><strong>${title}</strong></div>
-                  <div>${company}</div>
-                </div>
-                <div style="text-align:right;">${start} - ${end}</div>
-             </div>`;
+                <div style="text-align:left;"><div><strong>${title}</strong></div><div>${company}</div></div>
+                <div style="text-align:right;">${start} - ${end}</div></div>`;
       if(res.length){ html+="<ul>"; res.forEach(r=>html+=`<li>${r}</li>`); html+="</ul>"; }
     });
   }
@@ -216,26 +219,17 @@ function updatePreview(){
       const start=formatMonthYear(e.querySelector("input:nth-child(3)").value);
       const end=formatMonthYear(e.querySelector("input:nth-child(4)").value);
       const cgpa=e.querySelector("input:nth-child(5)").value;
-      html+=`<div style="display:flex; justify-content:space-between;">
-                <div style="text-align:left;">
-                  <div><strong>${deg}</strong></div>
-                  <div>${inst}</div>
-                </div>
-                <div style="text-align:right;">${start} - ${end}</div>
-             </div>`;
+      html+=`<div style="display:flex; justify-content:space-between;"><div style="text-align:left;"><div><strong>${deg}</strong></div><div>${inst}</div></div>
+             <div style="text-align:right;">${start} - ${end}</div></div>`;
       if(cgpa) html+=`<p>CGPA: ${cgpa}</p>`;
     });
   }
 
   // Skills, Achievements, Certifications
-  function sectionToHtml(id,title){
-    const vals=[...document.querySelectorAll(`#${id} input`)].map(i=>i.value).filter(Boolean);
-    if(vals.length){ html+=`<h2>${title}</h2><ul>`; vals.forEach(v=>html+=`<li>${v}</li>`); html+="</ul>"; }
-  }
-  sectionToHtml("techSkills","Technical Skills");
-  sectionToHtml("softSkills","Soft Skills");
-  sectionToHtml("achievements","Achievements");
-  sectionToHtml("certifications","Certifications");
+  ['techSkills','softSkills','achievements','certifications'].forEach(section=>{
+    const vals=[...document.querySelectorAll(`#${section} input`)].map(i=>i.value).filter(Boolean);
+    if(vals.length){ html+=`<h2>${section.replace(/([A-Z])/g,' $1')}</h2><ul>`; vals.forEach(v=>html+=`<li>${v}</li>`); html+="</ul>"; }
+  });
 
   html+="</div>";
   document.getElementById("resumePreview").innerHTML=html;
@@ -244,8 +238,8 @@ function updatePreview(){
 // Download DOCX
 function downloadDocx(){
   const content = document.getElementById("resumePreview").innerHTML;
-  const converted = htmlDocx.asBlob(`<!DOCTYPE html><html><body>${content}</body></html>`);
-  saveAs(converted,"ATS-Friendly-Resume.docx");
+  const blob = htmlDocx.asBlob('<!DOCTYPE html><html><body>' + content + '</body></html>');
+  saveAs(blob, 'ATS-Friendly-Resume.docx');
 }
 </script>
 </div>
