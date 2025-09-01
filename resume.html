@@ -12,25 +12,35 @@ input, textarea, select, button { width:100%; margin:5px 0; padding:8px; border-
 button { background:#0073e6; color:#fff; border:none; cursor:pointer; font-weight:bold; transition:0.3s; }
 button:hover { background:#005bb5; }
 .entry { margin-bottom:8px; background:#fff; padding:8px; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-.page { width:210mm; min-height:297mm; padding:15mm; margin-top:20px; background:white; box-shadow:0 0 5px rgba(0,0,0,0.1); box-sizing:border-box; font-size:13px; line-height:1.3; }
+.page { 
+  width:210mm; 
+  padding:15mm; 
+  margin-top:20px; 
+  background:white; 
+  box-shadow:0 0 5px rgba(0,0,0,0.1); 
+  box-sizing:border-box; 
+  font-size:13px; 
+  line-height:1.3; 
+}
 .page h1 { text-align:center; font-size:26px; margin-bottom:2px; color:#0073e6; }
 .page p.title { text-align:center; font-size:16px; margin-top:0; margin-bottom:10px; font-weight:bold; }
 .page h2 { font-size:18px; margin-top:12px; color:#0073e6; }
 .page p, .page li { font-size:13px; line-height:1.3; }
 ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 @media print {
+  @page { size: A4; margin: 15mm; }
   body * { visibility: hidden; }
   #resumePreview, #resumePreview * { visibility: visible; }
-  #resumePreview { position:absolute; left:0; top:0; width:100%; }
+  #resumePreview { position:absolute; left:0; top:0; width:100%; margin:0; box-shadow:none; }
 }
 </style>
-<!-- jsPDF for PDF download -->
+<!-- jsPDF and html2canvas -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 <div class="container">
 <h2>ATS Friendly Resume Generator</h2>
-
 <input type="text" id="name" placeholder="Full Name">
 <select id="titleSelect">
   <option value="">-- Select Job Title --</option>
@@ -66,15 +76,18 @@ ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 <div id="education"></div>
 <button onclick="addEducation()">+ Add Education</button>
 
+<!-- Buttons -->
 <button onclick="updatePreview()">Generate Resume</button>
 <button onclick="window.print()">Print Resume</button>
 <button onclick="downloadPdf()">Download PDF</button>
+<button onclick="openPdfToDocx()">PDF ➝ Word Converter</button>
 
 <div id="resumePreview"></div>
 </div>
 <script>
 // =================== JOB OPTIONS FOR AUTO-FILL ===================
 const jobOptions = [
+
   // Textile Engineer
   {
     title: "Textile Engineer",
@@ -294,8 +307,8 @@ const jobOptions = [
       }
     ]
   }
-];
 
+];
 // Populate dropdown
 const titleSelect = document.getElementById("titleSelect");
 jobOptions.forEach(job => {
@@ -305,19 +318,16 @@ jobOptions.forEach(job => {
   titleSelect.appendChild(opt);
 });
 
-// Auto-fill form when job selected
+// Auto-fill form
 titleSelect.addEventListener("change", function(){
   const selected = jobOptions.find(j => j.title === this.value);
   if(selected){
     document.getElementById("title").value = selected.title;
     document.getElementById("summary").value = selected.summary;
-
     fillSection("techSkills", selected.techSkills);
     fillSection("softSkills", selected.softSkills);
     fillSection("achievements", selected.achievements);
     fillSection("certifications", selected.certifications);
-
-    // Experience section
     document.getElementById("experience").innerHTML = "";
     selected.experience.forEach(exp=>{
       const div=document.createElement("div"); div.className="entry";
@@ -340,35 +350,31 @@ titleSelect.addEventListener("change", function(){
     });
   }
 });
-                 </script>
-                 <script>
+
 // =================== PDF DOWNLOAD ===================
-function downloadPdf(){
+function downloadPdf() {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF("p","pt","a4");
   const resume = document.getElementById("resumePreview");
-  doc.html(resume, {
-    callback: function(doc) {
-      doc.save("ATS-Friendly-Resume.pdf");
-    },
-    x: 20,
-    y: 20,
-    width: 560
+  html2canvas(resume, { scale: 2 }).then(canvas => {
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const imgWidth = pageWidth;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.save("ATS-Friendly-Resume.pdf");
   });
 }
 
 // =================== ADD NEW INPUT FIELDS ===================
-// Add skill dynamically
 function addSkill(sectionId){
   const div=document.createElement("input");
   div.type="text"; div.placeholder="Add item";
   document.getElementById(sectionId).appendChild(div);
 }
-
-// Add experience manually
 function addExperience(prefill){
-  const div=document.createElement("div"); 
-  div.className="entry";
+  const div=document.createElement("div"); div.className="entry";
   let optionsHtml = prefill ? prefill.map(job => `<option value="${job.title}">${job.title}</option>`).join('') : '';
   div.innerHTML = `<select class="jobTitle"><option value="">Select Job Title</option>${optionsHtml}</select>
                    <input type='text' placeholder='Company Name'>
@@ -384,8 +390,6 @@ function addExperience(prefill){
   });
   document.getElementById("experience").appendChild(div);
 }
-
-// Add education manually
 function addEducation(){
   const div=document.createElement("div"); div.className="entry";
   div.innerHTML=`<input type='text' placeholder='Degree'>
@@ -395,30 +399,25 @@ function addEducation(){
                  <input type='number' placeholder='CGPA' step='0.01' min='0' max='5'>`;
   document.getElementById("education").appendChild(div);
 }
-
-// Fill section from array (used by auto-fill)
 function fillSection(sectionId, arr){
   const container=document.getElementById(sectionId); 
   container.innerHTML="";
   if(arr && arr.length){ 
     arr.forEach(v=>{
       const input=document.createElement("input"); 
-      input.type="text"; 
-      input.value=v; 
+      input.type="text"; input.value=v; 
       container.appendChild(input); 
     });
   }
 }
 
-// =================== GENERATE PREVIEW ===================
+// =================== GENERATE RESUME PREVIEW ===================
 function updatePreview(){
   function formatMonthYear(dateStr){ 
     if(!dateStr) return ""; 
     const date=new Date(dateStr); 
-    const options={ year:'numeric', month:'short'}; 
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString('en-US', { year:'numeric', month:'short'}); 
   }
-
   let html=`<div class='page'>
             <h1>${document.getElementById("name").value}</h1>
             <p class="title">${document.getElementById("title").value}</p>
@@ -428,8 +427,6 @@ function updatePreview(){
                Location: ${document.getElementById("location").value}</p>
             <h2>Professional Summary</h2>
             <p>${document.getElementById("summary").value}</p>`;
-
-  // Experience
   const exps=document.querySelectorAll("#experience .entry");
   if(exps.length){ 
     html+="<h2>Experience</h2>";
@@ -439,52 +436,44 @@ function updatePreview(){
       const start=formatMonthYear(e.querySelector("input[type='month']:nth-child(3)")?.value);
       const endInput = e.querySelector("input[type='month']:nth-child(4)");
       const currentCheckbox = e.querySelector(".currentJob");
-      const end = currentCheckbox && currentCheckbox.checked ? "Present" : formatMonthYear(endInput?.value);
-      const res=e.querySelector("textarea")?.value.split("\n").filter(Boolean) || [];
-      html+=`<div style="display:flex; justify-content:space-between;">
-                <div style="text-align:left;">
-                  <div><strong>${title}</strong></div>
-                  <div>${company}</div>
-                </div>
-                <div style="text-align:right;">${start} - ${end}</div>
-             </div>`;
-      if(res.length){ html+="<ul>"; res.forEach(r=>html+=`<li>${r}</li>`); html+="</ul>"; }
+      const end = currentCheckbox ? (currentCheckbox.checked ? "Present" : formatMonthYear(endInput?.value))
+      : "";
+      const resp=e.querySelector("textarea")?.value.split("\n").filter(r=>r.trim()).map(r=>`<li>${r}</li>`).join("") || "";
+      html+=`<p><b>${title}</b>, ${company} (${start} - ${end})</p>`;
+      if(resp) html+=`<ul>${resp}</ul>`;
     });
   }
 
-  // Education
+  function listFromInputs(selector){
+    const arr=[...document.querySelectorAll(selector)].map(i=>i.value.trim()).filter(v=>v);
+    return arr.length? `<ul>${arr.map(v=>`<li>${v}</li>`).join("")}</ul>` : "";
+  }
+  const ts=listFromInputs("#techSkills input"); if(ts) html+="<h2>Technical Skills</h2>"+ts;
+  const ss=listFromInputs("#softSkills input"); if(ss) html+="<h2>Soft Skills</h2>"+ss;
+  const ach=listFromInputs("#achievements input"); if(ach) html+="<h2>Achievements</h2>"+ach;
+  const cert=listFromInputs("#certifications input"); if(cert) html+="<h2>Certifications</h2>"+cert;
+
   const edus=document.querySelectorAll("#education .entry");
   if(edus.length){ 
     html+="<h2>Education</h2>";
-    edus.forEach(e=>{
-      const deg=e.querySelector("input:nth-child(1)").value;
-      const inst=e.querySelector("input:nth-child(2)").value;
-      const start=formatMonthYear(e.querySelector("input:nth-child(3)").value);
-      const end=formatMonthYear(e.querySelector("input:nth-child(4)").value);
-      const cgpa=e.querySelector("input:nth-child(5)").value;
-      html+=`<div style="display:flex; justify-content:space-between;">
-                <div style="text-align:left;">
-                  <div><strong>${deg}</strong></div>
-                  <div>${inst}</div>
-                </div>
-                <div style="text-align:right;">${start} - ${end}</div>
-             </div>`;
-      if(cgpa) html+=`<p>CGPA: ${cgpa}</p>`;
+    edus.forEach(ed=>{
+      const deg=ed.querySelector("input[placeholder='Degree']")?.value || "";
+      const inst=ed.querySelector("input[placeholder='Institute']")?.value || "";
+      const start=formatMonthYear(ed.querySelector("input[type='month']:nth-child(3)")?.value);
+      const end=formatMonthYear(ed.querySelector("input[type='month']:nth-child(4)")?.value);
+      const cgpa=ed.querySelector("input[type='number']")?.value;
+      html+=`<p><b>${deg}</b>, ${inst} (${start} - ${end})`;
+      if(cgpa) html+=` – CGPA: ${cgpa}`;
+      html+=`</p>`;
     });
   }
-
-  // Other sections (skills, achievements, certifications)
-  function sectionToHtml(id,title){
-    const vals=[...document.querySelectorAll(`#${id} input`)].map(i=>i.value).filter(Boolean);
-    if(vals.length){ html+=`<h2>${title}</h2><ul>`; vals.forEach(v=>html+=`<li>${v}</li>`); html+="</ul>"; }
-  }
-  sectionToHtml("techSkills","Technical Skills");
-  sectionToHtml("softSkills","Soft Skills");
-  sectionToHtml("achievements","Achievements");
-  sectionToHtml("certifications","Certifications");
-
   html+="</div>";
   document.getElementById("resumePreview").innerHTML=html;
+}
+
+// =================== OPEN EXTERNAL PDF ➝ WORD CONVERTER ===================
+function openPdfToDocx(){
+  window.open("https://pdf.coderobo.org/", "_blank");
 }
 </script>
 </body>
