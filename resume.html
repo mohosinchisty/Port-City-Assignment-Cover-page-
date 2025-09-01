@@ -69,9 +69,36 @@ ul { padding-left:18px; margin-top:5px; margin-bottom:5px; }
 <button onclick="updatePreview()">Generate Resume</button>
 <button onclick="window.print()">Print Resume</button>
 <button onclick="downloadDocx()">Download DOCX</button>
+<!-- Add this new button under your existing buttons -->
+<button onclick="downloadPdf()">Download PDF</button>
 
 <div id="resumePreview"></div>
 </div>
+<!-- jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+  // Existing downloadDocx() is already here
+
+  // New: Download PDF
+  function downloadPdf() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Grab the resume preview HTML
+    const resume = document.getElementById("resumePreview");
+
+    // Convert HTML to PDF
+    doc.html(resume, {
+      callback: function (doc) {
+        doc.save("ATS-Friendly-Resume.pdf");
+      },
+      x: 20,
+      y: 20,
+      width: 560 // fits inside A4
+    });
+  }
+</script>
 
 <script>
   const jobOptions = [
